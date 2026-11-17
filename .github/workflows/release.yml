@@ -111,7 +111,7 @@ jobs:
           fi
           printf '# Locapharm v%s\n\n%s\n\nCette version ne confirme pas la couverture des pharmacies ni des tours de garde. Appelez avant de vous déplacer.\n' "$VERSION" "$note" > "$RUNNER_TEMP/release-notes.md"
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ inputs.version }}
           target_commitish: ${{ github.sha }}
