@@ -18,7 +18,7 @@
     "@angular/core": "20.3.35",
     "@angular/forms": "20.3.35",
     "@angular/platform-browser": "20.3.35",
-    "@angular/router": "20.3.35",
+    "@angular/router": "22.2.6",
     "@capacitor-community/keep-awake": "8.0.1",
     "@capacitor-community/speech-recognition": "7.0.1",
     "@capacitor-community/sqlite": "8.1.1",
