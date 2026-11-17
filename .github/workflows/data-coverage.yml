@@ -28,7 +28,7 @@ jobs:
             cat "$RUNNER_TEMP/osm-coverage.tsv"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: osm-coverage-${{ github.run_id }}
           path: ${{ runner.temp }}/osm-coverage.tsv
