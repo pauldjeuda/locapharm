@@ -1,0 +1,129 @@
+name: data-refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 1 * *"
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: osm-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-cameroon-pack:
+    name: extract, normalize, and propose OSM pharmacy data
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Install Osmium Tool
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes osmium-tool
+      - name: Download Cameroon OSM extract
+        env:
+          EXTRACT_URL: https://download.geofabrik.de/africa/cameroon-latest.osm.pbf
+        run: |
+          mkdir -p "$RUNNER_TEMP/locapharm-osm"
+          curl --fail --location --retry 5 --retry-delay 2 \
+            --user-agent "Locapharm-data-refresh/0.1 (+https://github.com/${GITHUB_REPOSITORY})" \
+            "$EXTRACT_URL" \
+            --output "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf"
+          sha256sum "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf" \
+            | cut -d ' ' -f 1 > "$RUNNER_TEMP/locapharm-osm/extract.sha256"
+          stat --format='%s' "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf" \
+            > "$RUNNER_TEMP/locapharm-osm/extract.bytes"
+          snapshot="$(osmium fileinfo --get=header.option.osmosis_replication_timestamp "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf" 2>/dev/null || true)"
+          if [ -z "$snapshot" ]; then
+            snapshot="$(osmium fileinfo --extended --get=data.timestamp.last "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf")"
+          fi
+          if [ -z "$snapshot" ]; then
+            echo "The OSM extract does not expose a data timestamp." >&2
+            exit 1
+          fi
+          echo "OSM_SNAPSHOT_AT=$snapshot" >> "$GITHUB_ENV"
+          echo "OSM_EXTRACT_SHA256=$(cat "$RUNNER_TEMP/locapharm-osm/extract.sha256")" >> "$GITHUB_ENV"
+          echo "OSM_EXTRACT_BYTES=$(cat "$RUNNER_TEMP/locapharm-osm/extract.bytes")" >> "$GITHUB_ENV"
+          echo "OSM_EXTRACT_URL=$EXTRACT_URL" >> "$GITHUB_ENV"
+          echo "OSM_FETCHED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - name: Filter and export pharmacy objects
+        run: |
+          osmium tags-filter \
+            --output "$RUNNER_TEMP/locapharm-osm/pharmacies.osm.pbf" \
+            "$RUNNER_TEMP/locapharm-osm/cameroon-latest.osm.pbf" \
+            n/amenity=pharmacy w/amenity=pharmacy r/amenity=pharmacy \
+            n/healthcare=pharmacy w/healthcare=pharmacy r/healthcare=pharmacy
+          osmium export \
+            --add-unique-id=type_id \
+            --attributes type,id,timestamp \
+            --output "$RUNNER_TEMP/locapharm-osm/pharmacies.geojson" \
+            "$RUNNER_TEMP/locapharm-osm/pharmacies.osm.pbf"
+      - name: Normalize pack and write coverage report
+        env:
+          PAGES_BASE_URL: https://pauldjeuda.github.io/locapharm
+        run: |
+          node scripts/normalize-osm-pharmacies.mjs \
+            "$RUNNER_TEMP/locapharm-osm/pharmacies.geojson" \
+            data/packs/cm.json \
+            data/coverage/latest.tsv
+          {
+            echo '## Cameroon OSM pharmacy pack proposal'
+            echo
+            echo "OSM snapshot: $OSM_SNAPSHOT_AT"
+            echo "Geofabrik extract SHA-256: $OSM_EXTRACT_SHA256"
+            echo
+            echo 'This report counts mapped objects and tag coverage. It does not claim real-world completeness, current opening, or duty status.'
+            echo
+            echo '```text'
+            cat data/coverage/latest.tsv
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: locapharm-osm-proposal-${{ github.run_id }}
+          path: |
+            data/packs/cm.json
+            data/packs/manifest.json
+            data/coverage/latest.tsv
+          if-no-files-found: error
+          retention-days: 30
+      - name: Propose the refreshed data as a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          git switch --create data/osm-refresh
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/packs/cm.json data/packs/manifest.json data/coverage/latest.tsv
+          if git diff --cached --quiet; then
+            echo "The generated OSM pack is unchanged; no pull request update is needed."
+            exit 0
+          fi
+          git commit -m "data: refresh Cameroon OSM pharmacy pack"
+          git push --force origin HEAD:data/osm-refresh
+          existing_pr="$(gh pr list --repo "$GH_REPO" --head data/osm-refresh --json number --jq '.[0].number // empty')"
+          if [ -z "$existing_pr" ]; then
+            gh pr create \
+              --repo "$GH_REPO" \
+              --base main \
+              --head data/osm-refresh \
+              --title "data: refresh Cameroon OSM pharmacy pack" \
+              --body "Automated OSM-derived pack proposal. Review the coverage artifact and source snapshot before merging. No duty schedule or emergency number is included. Counts describe mapped objects, not completeness."
+          else
+            gh pr edit "$existing_pr" \
+              --repo "$GH_REPO" \
+              --title "data: refresh Cameroon OSM pharmacy pack" \
+              --body "Automated OSM-derived pack proposal. Review the coverage artifact and source snapshot before merging. No duty schedule or emergency number is included. Counts describe mapped objects, not completeness."
+          fi
+          gh workflow run ci.yml --repo "$GH_REPO" --ref data/osm-refresh

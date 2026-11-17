@@ -1,0 +1,182 @@
+name: reports-digest
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  digest:
+    if: vars.REPORTS_DIGEST_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update the private-data-free moderation issue
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_DIGEST_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          import os
+          import re
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from datetime import datetime, timezone
+
+          title = "Locapharm — file de modération"
+          worker_base = os.environ["WORKER_BASE_URL"].rstrip("/")
+          admin_token = os.environ["ADMIN_TOKEN"]
+          github_token = os.environ["GITHUB_TOKEN"]
+          repository = os.environ["REPOSITORY"]
+          if not worker_base.startswith("https://") or not admin_token or not github_token:
+              raise SystemExit("Configure HTTPS WORKER_BASE_URL and ADMIN_DIGEST_TOKEN before enabling this workflow.")
+
+          def request_json(url, token, method="GET", payload=None):
+              data = None if payload is None else json.dumps(payload).encode("utf-8")
+              headers = {"Accept": "application/vnd.github+json", "Authorization": f"Bearer {token}"}
+              if "api.github.com" in url:
+                  headers["X-GitHub-Api-Version"] = "2022-11-28"
+              if data is not None:
+                  headers["Content-Type"] = "application/json"
+              request = urllib.request.Request(url, data=data, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      return response.status, json.loads(response.read()) if response.status != 204 else None
+              except urllib.error.HTTPError as error:
+                  raise RuntimeError(f"Digest request failed with HTTP {error.code}") from None
+
+          _, response = request_json(
+              worker_base + "/admin/pending?include_details=0",
+              admin_token,
+          )
+          reports = response.get("reports") if isinstance(response, dict) else None
+          if not isinstance(reports, list):
+              raise SystemExit("Worker returned an invalid pending-report response.")
+          _, feedback_response = request_json(
+              worker_base + "/admin/feedback?include_details=0",
+              admin_token,
+          )
+          feedback_items = feedback_response.get("feedback") if isinstance(feedback_response, dict) else None
+          if not isinstance(feedback_items, list):
+              raise SystemExit("Worker returned an invalid pending-feedback response.")
+
+          lines = [
+              "<!-- locapharm-reports-digest -->",
+              "Mise à jour automatique des éléments en attente de modération.",
+              "",
+              "Les textes libres et numéros de contact sont volontairement exclus de cette issue.",
+              "Consultez les contenus dans le Worker protégé. Publiez toute correction de données par une revue Git normale.",
+              "",
+              "## Signalements de pharmacies",
+              "",
+          ]
+          allowed_reasons = {"phone", "address", "hours", "closed", "duty", "missing", "access"}
+          for report in reports:
+              if not isinstance(report, dict):
+                  continue
+              reference = report.get("id")
+              if not isinstance(reference, str) or not re.fullmatch(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}", reference):
+                  continue
+              reasons = report.get("reasons_json", "[]")
+              try:
+                  reasons = json.loads(reasons)
+              except (TypeError, json.JSONDecodeError):
+                  reasons = []
+              if not isinstance(reasons, list):
+                  reasons = []
+              reasons = [reason for reason in reasons if isinstance(reason, str) and reason in allowed_reasons]
+              kind = report.get("kind")
+              if kind not in {"correction", "missing", "duty_list"}:
+                  kind = "inconnu"
+              pharmacy_id = report.get("pharmacy_id")
+              if pharmacy_id is not None and (not isinstance(pharmacy_id, str) or not re.fullmatch(r"(?:osm:)?(?:node|way|relation)/\d{1,20}", pharmacy_id)):
+                  pharmacy_id = "identifiant invalide"
+              created_at = report.get("created_at")
+              if isinstance(created_at, (int, float)):
+                  created = datetime.fromtimestamp(created_at, timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+              else:
+                  created = "date indisponible"
+              lines.extend([
+                  f"### `{reference}`",
+                  f"- Type : `{kind}`",
+                  f"- Pharmacie OSM : `{pharmacy_id or 'absente — nouveau point proposé'}`",
+                  f"- Motifs : {', '.join(f'`{reason}`' for reason in reasons) or 'non disponibles'}",
+                  f"- Créé le : {created}",
+              ])
+              latitude = report.get("proposed_lat")
+              longitude = report.get("proposed_lon")
+              if (
+                  isinstance(latitude, (int, float))
+                  and isinstance(longitude, (int, float))
+                  and math.isfinite(latitude)
+                  and math.isfinite(longitude)
+                  and 1.3 <= latitude <= 13.5
+                  and 8 <= longitude <= 16.5
+              ):
+                  lines.append(f"- Point de pharmacie proposé : `{latitude:.5f}, {longitude:.5f}`")
+              lines.append("")
+
+          lines.extend(["## Retours d’application", ""])
+          allowed_diagnostics = {
+              "platform": {"android", "web"},
+              "locale": {"fr", "en"},
+              "network": {"online", "offline", "unknown"},
+              "error_code": {"api_unavailable", "pack_download_failed", "local_storage_error", "map_unavailable", "unknown"},
+          }
+          for item in feedback_items:
+              if not isinstance(item, dict):
+                  continue
+              reference = item.get("id")
+              if not isinstance(reference, str) or not re.fullmatch(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}", reference):
+                  continue
+              created_at = item.get("created_at")
+              created = datetime.fromtimestamp(created_at, timezone.utc).strftime("%Y-%m-%d %H:%M UTC") if isinstance(created_at, (int, float)) else "date indisponible"
+              lines.extend([f"### `{reference}`", f"- Créé le : {created}"])
+              diagnostics = item.get("diagnostics")
+              if isinstance(diagnostics, dict):
+                  safe_diagnostics = []
+                  app_version = diagnostics.get("app_version")
+                  if isinstance(app_version, str) and re.fullmatch(r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?", app_version):
+                      safe_diagnostics.append(f"version `{app_version}`")
+                  for key, allowed_values in allowed_diagnostics.items():
+                      value = diagnostics.get(key)
+                      if isinstance(value, str) and value in allowed_values:
+                          safe_diagnostics.append(f"{key} `{value}`")
+                  if safe_diagnostics:
+                      lines.append("- Diagnostics opt-in : " + ", ".join(safe_diagnostics))
+              lines.append("")
+
+          if not reports and not feedback_items:
+              lines.append("Aucun signalement ni retour en attente.")
+          if response.get("has_more") or feedback_response.get("has_more"):
+              lines.extend(["", "⚠️ Au moins une file est limitée aux 100 éléments les plus anciens. Traitez-les pour faire apparaître les suivants au prochain digest."])
+          body = "\n".join(lines)
+
+          api_base = "https://api.github.com/repos/" + repository
+          existing = None
+          page = 1
+          while existing is None:
+              query = urllib.parse.urlencode({"state": "open", "sort": "updated", "direction": "desc", "per_page": 100, "page": page})
+              _, issues = request_json(api_base + "/issues?" + query, github_token)
+              existing = next((issue for issue in issues if "pull_request" not in issue and issue.get("title") == title), None)
+              if existing is not None or len(issues) < 100:
+                  break
+              page += 1
+
+          if reports or feedback_items:
+              if existing:
+                  request_json(existing["url"], github_token, "PATCH", {"title": title, "body": body})
+              else:
+                  request_json(api_base + "/issues", github_token, "POST", {"title": title, "body": body})
+          elif existing:
+              request_json(existing["url"], github_token, "PATCH", {"body": body, "state": "closed"})
+          print(f"Digest synchronized: {len(reports)} report(s), {len(feedback_items)} feedback item(s).")
+          PY

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3f5a36" />
+    <title>Locapharm Cameroun</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, system-ui, sans-serif;
+        background: #f1f4f9;
+        color: #141814;
+      }
+      body {
+        max-width: 46rem;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+      }
+      main {
+        padding: clamp(1.5rem, 6vw, 3rem);
+        border-radius: 2rem;
+        background: white;
+        box-shadow: 0 1rem 3rem #14181412;
+      }
+      .mark {
+        display: grid;
+        width: 3.5rem;
+        height: 3.5rem;
+        place-items: center;
+        border-radius: 1.25rem;
+        background: #c8f000;
+        font-size: 2rem;
+      }
+      h1 {
+        margin: 1.25rem 0 0.5rem;
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        letter-spacing: -0.06em;
+      }
+      p {
+        line-height: 1.65;
+        color: #515b50;
+      }
+      a {
+        color: #315329;
+        font-weight: 700;
+      }
+      .notice {
+        margin-top: 2rem;
+        padding: 1.25rem;
+        border-radius: 1.25rem;
+        background: #f1f4f9;
+      }
+      .notice strong {
+        color: #181c20;
+      }
+      footer {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true">✚</div>
+      <h1>Locapharm</h1>
+      <p>
+        Répertoire de pharmacies du Cameroun, conçu pour rechercher les données
+        disponibles sur l’appareil et rester utile lorsque le réseau est limité.
+      </p>
+      <p>
+        <a href="data/packs/manifest.json"
+          >Consulter le manifeste des données</a
+        >
+        · <a href="version.json">Vérifier les mises à jour Android</a>
+      </p>
+      <section class="notice" aria-label="Information sur les données">
+        <strong
+          >Les données cartographiques ne sont pas un registre
+          exhaustif.</strong
+        >
+        <p>
+          Les pharmacies proviennent de contributions OpenStreetMap et peuvent
+          être absentes, incomplètes ou anciennes. Aucun statut de garde n’est
+          publié sans une source actuelle autorisée. Appelez avant de vous
+          déplacer.
+        </p>
+      </section>
+      <footer>
+        Données ©
+        <a href="https://www.openstreetmap.org/copyright"
+          >OpenStreetMap contributors</a
+        >, sous licence ODbL.
+        <a href="https://opendatacommons.org/licenses/odbl/1-0/"
+          >Conditions ODbL</a
+        >.
+      </footer>
+    </main>
+  </body>
+</html>

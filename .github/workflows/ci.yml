@@ -31,6 +31,7 @@ jobs:
         run: |
           message="$PR_TITLE"
           if [ -z "$message" ]; then message="$PUSH_MESSAGE"; fi
+          if [ -z "$message" ]; then message="$(git log -1 --format=%s)"; fi
           printf '%s\n' "$message" | npx --no-install commitlint
       - run: npm run lint
       - run: npm run typecheck
@@ -52,6 +53,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Configure the public Worker endpoint
+        env:
+          LOCAPHARM_WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: node scripts/set-worker-runtime-config.mjs
       - run: npm run build
       - uses: actions/upload-artifact@v6
         with:
@@ -94,6 +99,10 @@ jobs:
           distribution: temurin
           java-version: "21"
       - run: npm ci
+      - name: Configure the public Worker endpoint
+        env:
+          LOCAPHARM_WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: node scripts/set-worker-runtime-config.mjs
       - run: npm run build
       - name: Create Android project and build debug APK
         working-directory: app
@@ -123,6 +132,10 @@ jobs:
           distribution: temurin
           java-version: "21"
       - run: npm ci
+      - name: Configure the public Worker endpoint
+        env:
+          LOCAPHARM_WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: node scripts/set-worker-runtime-config.mjs
       - run: npm run build
       - name: Build, install, and launch on emulator
         uses: reactivecircus/android-emulator-runner@v2

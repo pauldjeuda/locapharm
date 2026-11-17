@@ -9,9 +9,8 @@ on:
         type: string
 
 permissions:
+  actions: read
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: release-${{ inputs.version }}
@@ -21,9 +20,6 @@ jobs:
   release:
     name: build, sign, and publish APK
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.pages.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -48,7 +44,28 @@ jobs:
             echo "Tag v$VERSION already exists" >&2
             exit 1
           fi
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "Releases must be built from main." >&2
+            exit 1
+          fi
+      - name: Require successful CI for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          successful_runs="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml --commit "$GITHUB_SHA" --status success --json conclusion --jq 'length')"
+          if [[ "$successful_runs" == "0" ]]; then
+            echo "A successful ci.yml run for this exact main commit is required before release." >&2
+            exit 1
+          fi
       - run: npm ci
+      - name: Set app version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: node scripts/set-app-version.mjs "$VERSION"
+      - name: Configure the public Worker endpoint
+        env:
+          LOCAPHARM_WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: node scripts/set-worker-runtime-config.mjs
       - run: npm run build
       - name: Build and sign APK
         id: apk
@@ -61,6 +78,7 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           npx cap add android
+          node ../scripts/set-android-version.mjs android/app/build.gradle "$VERSION"
           npx cap sync android
           cd android
           if [[ -n "$ANDROID_KEYSTORE_BASE64" && -n "$ANDROID_KEYSTORE_PASSWORD" && -n "$ANDROID_KEY_ALIAS" && -n "$ANDROID_KEY_PASSWORD" ]]; then
@@ -103,16 +121,3 @@ jobs:
             ${{ runner.temp }}/locapharm-v${{ inputs.version }}.apk
             ${{ runner.temp }}/locapharm-v${{ inputs.version }}.apk.sha256
           prerelease: ${{ steps.apk.outputs.signed != 'true' }}
-      - name: Prepare Pages version manifest
-        env:
-          VERSION: ${{ inputs.version }}
-          REPOSITORY: ${{ github.repository }}
-        run: |
-          mkdir -p site
-          node -e 'const [major, minor, patch] = process.env.VERSION.split(".").map(Number); const v = process.env.VERSION; const url = `${process.env.GITHUB_SERVER_URL}/${process.env.REPOSITORY}/releases/download/v${v}/locapharm-v${v}.apk`; require("node:fs").writeFileSync("site/version.json", JSON.stringify({version:v, versionCode:major*1000000+minor*1000+patch, url, sha256:require("node:fs").readFileSync(process.env.RUNNER_TEMP+`/locapharm-v${v}.apk.sha256`, "utf8").split(" ")[0], notes:`Locapharm v${v}`, minSupported:"0.1.0"}, null, 2)+"\n")'
-          test -f site/index.html || printf '<!doctype html><html lang="fr"><meta charset="utf-8"><title>Locapharm</title><h1>Locapharm</h1><p>Pharmacies du Cameroun.</p></html>' > site/index.html
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: site
-      - id: pages
-        uses: actions/deploy-pages@v4

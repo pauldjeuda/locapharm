@@ -7,7 +7,27 @@ sources:
     license: ODbL-1.0
     contact: https://www.openstreetmap.org/fixthemap
     last_checked: 2026-11-17
-    notes: Pharmacy directory source; attribution/share-alike required; country coverage query pending.
+    notes: Pharmacy directory source; attribution/share-alike required. A monthly Actions workflow consumes the public Geofabrik extract and opens a review PR; OSM object counts are not a real-world completeness claim.
+
+  - id: geofabrik-cameroon
+    name: Geofabrik public Cameroon extract
+    url: https://download.geofabrik.de/africa/cameroon.html
+    status: permitted
+    official: false
+    license: ODbL-1.0
+    contact: https://www.geofabrik.de/geofabrik/imprint.html
+    last_checked: 2026-11-17
+    notes: Public extract page reported a 213 MB PBF with data through 2026-11-15T21:22:28Z. The Actions pipeline records the downloaded file checksum and opens its pack for review; it has not yet run.
+
+  - id: minat-emergency-contacts
+    name: Ministry of Territorial Administration emergency contacts
+    url: https://minat.gov.cm/contacts-generaux/
+    status: permitted
+    official: true
+    license: Public government contact information; source link and jurisdiction retained
+    contact: https://minat.gov.cm/contacts-generaux/
+    last_checked: 2026-11-17
+    notes: Offline contact values, date, source, and location limits are stored in data/emergency.json; recheck before each release.
 
   - id: openfreemap-liberty
     name: OpenFreeMap Liberty vector style

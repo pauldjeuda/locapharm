@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "last_checked": "2026-11-17",
+  "source": {
+    "name": "Ministère de l’Administration Territoriale du Cameroun (MINAT)",
+    "url": "https://minat.gov.cm/contacts-generaux/"
+  },
+  "contacts": [
+    {
+      "id": "samu",
+      "name_fr": "SAMU · aide médicale urgente",
+      "name_en": "SAMU · emergency medical service",
+      "mobile": "119",
+      "landline": "19",
+      "scope_fr": "Numéros indiqués par le MINAT pour le SAMU au Cameroun.",
+      "scope_en": "Numbers listed by MINAT for SAMU in Cameroon."
+    },
+    {
+      "id": "firefighters",
+      "name_fr": "Sapeurs-pompiers",
+      "name_en": "Fire and rescue service",
+      "mobile": "118",
+      "landline": "18",
+      "scope_fr": "Numéros indiqués par le MINAT pour les sapeurs-pompiers.",
+      "scope_en": "Numbers listed by MINAT for the fire and rescue service."
+    },
+    {
+      "id": "police",
+      "name_fr": "Police secours",
+      "name_en": "Police emergency",
+      "mobile": "117",
+      "landline": "17",
+      "scope_fr": "Le MINAT indique ces numéros pour Yaoundé, Douala et Garoua.",
+      "scope_en": "MINAT lists these numbers for Yaoundé, Douala, and Garoua."
+    },
+    {
+      "id": "gendarmerie",
+      "name_fr": "Gendarmerie",
+      "name_en": "Gendarmerie",
+      "mobile": "113",
+      "landline": "13",
+      "scope_fr": "Le MINAT indique ces numéros pour le Centre, le Littoral, l’Ouest et le Nord-Ouest.",
+      "scope_en": "MINAT lists these numbers for Centre, Littoral, Ouest, and Nord-Ouest."
+    }
+  ]
+}

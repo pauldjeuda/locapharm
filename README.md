@@ -2,23 +2,25 @@
 
 Locapharm is an Android-first, French-first pharmacy finder for Cameroon. It is designed to show nearby pharmacies, clearly sourced duty schedules, contact details, and routes while keeping pharmacy data available offline.
 
-The application is free and works without an account. It does not sell medicines, show ads, diagnose users, or send a user's location to a server except when the user requests a route.
+The application is free and works without an account. It does not sell medicines, show ads, or diagnose users. Nearby search uses device-local location and pharmacy data. Open/closed labels interpret the pharmacy's OpenStreetMap opening-hours tag; they are not live confirmations or duty rosters. Showing the online map reveals the visible map area to its tile provider; opening an external route sends the pharmacy destination to the maps app the user selects.
 
 ## Project status
 
-The repository is being built in gated sprints. Sprint 0 establishes the application shell, CI/CD, data contracts, and external-service decisions. Pharmacy and duty data are not shipped until their sources and quality have been verified. In particular, a pharmacy is never labelled `DE GARDE` without a current, traceable schedule.
+The local branch now contains the application shell, an OSM extract-to-review-PR workflow, an SQLite-backed regional pack installer, a MapLibre map page, and a unified Pages publisher. None of those workflows has run yet: the GitHub repository is still uninitialized, so no pharmacy pack, APK, or visual-parity result is published. Pharmacy entries are OSM map objects, not verified business listings. A pharmacy is never labelled `DE GARDE` without an authorized, current, traceable schedule.
+
+See [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the current implementation snapshot and release gates.
 
 ## Source layout
 
 - `app/` — Ionic + Angular + Capacitor Android application.
 - `data/` — OSM ingestion, schemas, regional packs, and duty-schedule source registry.
-- `worker/` — Cloudflare Worker API for routes and community reports.
+- `worker/` — Cloudflare Worker report/feedback/vote intake, public configuration, protected moderation endpoints, and an opt-in GitHub digest; D1 configuration, secrets, migrations, and deployment remain required. App feedback and remote-config clients are feature-gated until the Worker and privacy notice are ready; in-app routing remains unimplemented.
 - `design/stitch_locapharm_cameroon_app_ui/` — original Stitch screens, retained as read-only references.
 - `docs/` — architecture, decisions, provider notes, setup, sprint reports, and known issues.
 
 ## Build and checks
 
-All app builds, tests, Android artifacts, and releases run in GitHub Actions. Do not build or test on a developer workstation. See [docs/SETUP_PAUL.md](docs/SETUP_PAUL.md) for repository setup and [docs/SPRINT_0_PLAN.md](docs/SPRINT_0_PLAN.md) for the current plan.
+All app builds, tests, Android artifacts, and releases run in GitHub Actions. Do not build or test on a developer workstation. See [docs/SETUP_PAUL.md](docs/SETUP_PAUL.md) for repository setup and [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md) for the open release and validation gates.
 
 ## Data and licensing
 
@@ -27,6 +29,6 @@ OpenStreetMap-derived data is attributed to OpenStreetMap contributors and is su
 ## Development principles
 
 - No fake pharmacies, fake schedules, invented coverage counts, or unverified emergency numbers.
-- Location calculations stay on device. Route requests are transient and are not logged with coordinates.
-- Offline map downloads use a provider whose terms explicitly permit them; the OSM standard raster server is not used for offline packs.
+- Proximity calculations stay on device. Loading map tiles sends the viewed map area to OpenFreeMap. The map recenters on GPS only after the user explicitly requests location. External directions open only after the user taps the route action.
+- Pharmacy records can be downloaded for offline search. Offline map tiles are not implemented yet; the map needs an internet connection.
 - UI changes are checked against the supplied screen references and recorded in `docs/DESIGN_DEVIATIONS.md`.

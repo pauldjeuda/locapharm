@@ -12,6 +12,6 @@ Repositories / providers
   └─ Cloudflare Worker: route proxy, reports, votes, remote config
 ```
 
-All pharmacy proximity, distance, filtering, and schedule status calculations run locally. OSM packs are produced in GitHub Actions and published as static regional data. SQLite is the offline source after first installation. A location fix stays on device; only a user-requested route sends coarse start/end coordinates to the route provider through the Worker, without storing or logging those coordinates.
+All pharmacy proximity, distance, filtering, and schedule status calculations run locally. OSM packs are produced in GitHub Actions and published as static regional data. SQLite is the offline source after first installation. The current hosted map requests tiles for its viewport; GPS does not automatically center the map, and proximity calculations remain on-device. A future offline tile pack or self-hosted tile service is required to keep the viewed map area private as well.
 
 Pages do not call SQLite or `HttpClient` directly. Typed repositories/services own data access. Duty schedules have stricter source and expiry rules than directory entries: the app removes the `DE GARDE` badge for expired schedules and shows the source and last update.

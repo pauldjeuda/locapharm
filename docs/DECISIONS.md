@@ -20,16 +20,16 @@ This is a short ADR log. Decisions follow the product specification in `PROMPT_C
 ## ADR-003 — OSM pharmacy data
 
 - **Status:** Accepted, coverage pending
-- **Decision:** Use OSM/Overpass as the initial open pharmacy-directory source. Only use tags present in OSM; retain element IDs, source URLs, fetch timestamps, and ODbL attribution. Measure coverage before publishing any pack.
+- **Decision:** Use Geofabrik's public Cameroon OSM PBF as the monthly pharmacy-directory extract. Filter `amenity=pharmacy` and `healthcare=pharmacy`; retain element IDs, source URLs, extract timestamp, checksum, and ODbL attribution. The Actions workflow proposes each refresh as a pull request. Overpass remains a one-off coverage spike, not a per-user API.
 - **Reason:** The OSM data licence permits reuse with attribution/share-alike obligations, and the public Overpass service supports small, cached queries.
-- **Open item:** A Cameroon-wide Overpass query did not complete from this environment. No counts or completeness claims are accepted yet. See `docs/API_NOTES.md` for a reproducible GitHub Actions check.
+- **Open item:** The Geofabrik extract page was checked, but no Actions import has run and no pharmacy counts are verified in the app. Counts of OSM objects and tag coverage are not real-world completeness claims. See `docs/API_NOTES.md`.
 
 ## ADR-004 — Map tiles
 
 - **Status:** Provisional
-- **Decision:** Use OpenFreeMap vector tiles with MapLibre for the first map spike. Begin with its `liberty` style and apply the Locapharm style locally. Keep the style URL configurable. Do not use `tile.openstreetmap.org` for offline packs.
+- **Decision:** Use MapLibre GL JS 6.16.0 and OpenFreeMap vector tiles with the `liberty` style for the online map spike. The camera opens at a fixed Cameroon view and is not automatically centered on GPS. Do not use `tile.openstreetmap.org` for offline packs.
 - **Reason:** The live style endpoint returned HTTP 200 on 2026-11-17; published terms explicitly permit offline downloads up to 3,000 tiles or 50 MB, at no more than four parallel requests, with an identifying User-Agent.
-- **Risk:** OpenFreeMap is provided as-is and may be discontinued without notice. A self-hosted OSM vector stack is the fallback. Recheck performance, Cameroon coverage, and terms before release.
+- **Risk:** The hosted map receives requests for visible map tiles, so the provider can infer the viewport; this is disclosed in the UI. OpenFreeMap is provided as-is and may be discontinued without notice. Offline map packs or a self-hosted OSM vector stack are required to keep viewport coordinates private. Recheck performance, Cameroon coverage, and terms before release.
 
 ## ADR-005 — Routing provider
 

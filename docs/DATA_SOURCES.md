@@ -4,10 +4,10 @@ Checked 2026-11-17. The terms “official” and “permitted” refer to source
 
 ## Pharmacy directory
 
-| Source                     | Coverage / format observed                                    | Status                                                                                    | Next action                                                                                       |
-| -------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| OpenStreetMap / Overpass   | Country-wide open map database; pharmacy and healthcare tags. | Permitted under ODbL with attribution/share-alike obligations; coverage not yet measured. | Re-run the documented coverage spike from Actions; compare name/phone/hours completeness by city. |
-| Geofabrik Cameroon extract | Regional OSM PBF extract is available.                        | ODbL-derived; candidate fallback for bulk refresh.                                        | Verify extract timestamp/checksum and import runtime in Actions.                                  |
+| Source                     | Coverage / format observed                                                                                                       | Status                                                                                                                             | Next action                                                                                                                                |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| OpenStreetMap / Overpass   | Country-wide open map database; pharmacy and healthcare tags.                                                                    | Permitted under ODbL with attribution/share-alike obligations; query attempts failed TLS/timeouts, so no object count is verified. | Keep Overpass as a read-only spike; compare future city-tag coverage to field evidence before making any completeness claim.               |
+| Geofabrik Cameroon extract | Public regional OSM PBF. The download page reported 213 MB and data through `2026-11-15T21:22:28Z` when checked on `2026-11-17`. | ODbL-derived; public extracts omit contributor names/user IDs/changeset IDs. The page check did not download or import the file.   | Monthly Actions job records timestamp/checksum and raises a review PR. Review the first generated pack and coverage report before merging. |
 
 ## Duty schedules
 
@@ -34,3 +34,7 @@ Use a validated CSV pull request only after the submitting contributor supplies 
 Message template:
 
 > Bonjour, nous développons Locapharm, un annuaire gratuit des pharmacies du Cameroun. Nous souhaitons afficher, sans publicité et avec mention de votre organisme, les pharmacies de garde que vous publiez, avec la date de mise à jour et un numéro de confirmation. Autorisez-vous la réutilisation et la redistribution hors ligne de ces données ? Si oui, pourriez-vous préciser la licence, l'attribution, le format, la fréquence de mise à jour et le contact à prévenir en cas de correction urgente ? Nous n'afficherons aucune liste sans votre accord et nous indiquerons clairement sa source.
+
+## Emergency contacts
+
+The offline directory in `data/emergency.json` was checked against the [MINAT contacts page](https://minat.gov.cm/contacts-generaux/) on 2026-11-17. It lists SAMU 119/19, firefighters 118/18, police secours 117/17 for Yaoundé, Douala, and Garoua, and gendarmerie 113/13 for Centre, Littoral, Ouest, and Nord-Ouest. The app preserves the geographic limits stated by the publisher and displays the checked date and source. Recheck this page before each public release.

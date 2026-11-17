@@ -1,0 +1,62 @@
+name: pages
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: publish data, attribution, and app update manifest
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+          ref: main
+      - uses: actions/configure-pages@v5
+      - name: Assemble the Pages site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          rm -rf site
+          mkdir -p site/data/packs site/data/coverage
+          cp site-source/index.html site/index.html
+          cp site-source/.nojekyll site/.nojekyll
+          cp data/emergency.json site/data/emergency.json
+          if [ -f data/packs/manifest.json ]; then
+            cp data/packs/*.json site/data/packs/
+          fi
+          if [ -f data/coverage/latest.tsv ]; then
+            cp data/coverage/latest.tsv site/data/coverage/latest.tsv
+          fi
+          gh api "repos/$GH_REPO/releases/latest" > "$RUNNER_TEMP/locapharm-latest-release.json" 2>/dev/null || printf '{}\n' > "$RUNNER_TEMP/locapharm-latest-release.json"
+          release_tag="$(jq -r '.tag_name // empty' "$RUNNER_TEMP/locapharm-latest-release.json")"
+          apk_sha256=""
+          if [ -n "$release_tag" ]; then
+            mkdir -p "$RUNNER_TEMP/locapharm-release-assets"
+            if gh release download "$release_tag" --repo "$GH_REPO" --pattern "locapharm-${release_tag}.apk.sha256" --dir "$RUNNER_TEMP/locapharm-release-assets"; then
+              apk_sha256="$(awk 'NR == 1 { print $1 }' "$RUNNER_TEMP/locapharm-release-assets/locapharm-${release_tag}.apk.sha256")"
+            fi
+          fi
+          LOCAPHARM_RELEASE_JSON="$RUNNER_TEMP/locapharm-latest-release.json" LOCAPHARM_APK_SHA256="$apk_sha256" node scripts/build-pages-manifest.mjs
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

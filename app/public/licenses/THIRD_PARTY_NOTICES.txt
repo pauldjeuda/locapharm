@@ -1,0 +1,27 @@
+LOCAPHARM — THIRD-PARTY SOFTWARE NOTICES
+
+This application includes or bundles the following open-source packages:
+
+1. opening_hours 3.16.0
+   Purpose: interpret OpenStreetMap opening_hours tags on this device.
+   License: GNU Lesser General Public License v3.0 only (LGPL-3.0-only).
+   Original portions credited by upstream to Dmitry Marakasov carry a BSD 2-Clause notice.
+   Upstream: https://github.com/opening-hours/opening_hours.js
+   License texts: LGPL-3.0-only.txt and BSD-2-Clause-opening_hours-original.txt
+
+2. i18next 26.7.2
+   Dependency of opening_hours.
+   License: MIT.
+   Upstream: https://github.com/i18next/i18next
+   License text: MIT-i18next.txt
+
+3. suncalc 2.1.4
+   Dependency of opening_hours; used by its solar-time expressions.
+   License: BSD 2-Clause.
+   Upstream: https://github.com/mourner/suncalc
+   License text: BSD-2-Clause-suncalc.txt
+
+opening_hours.js interprets schedules copied from OpenStreetMap. Its result is a
+reading of the mapped opening_hours value, not live confirmation, a duty roster,
+or a guarantee that a pharmacy is open. Locapharm keeps conditional or
+uninterpretable values unknown and tells users to call before travelling.
