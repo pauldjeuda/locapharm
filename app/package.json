@@ -49,7 +49,7 @@
     "zone.js": "0.15.1"
   },
   "devDependencies": {
-    "@angular/build": "20.3.43",
+    "@angular/build": "22.2.7",
     "@angular/cli": "20.3.43",
     "@angular/compiler-cli": "20.3.35",
     "@capacitor/cli": "8.6.2",
