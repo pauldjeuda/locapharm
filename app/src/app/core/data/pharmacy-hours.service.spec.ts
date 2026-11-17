@@ -58,7 +58,10 @@ describe("PharmacyHoursService", () => {
 
   it("keeps explicitly conditional states unknown", async () => {
     const service = new PharmacyHoursService();
-    const record = pharmacy("Tu unknown; Mo-Su 09:00-18:00");
+    // "Mo-Su unknown" tells opening_hours.js the status is conditionally
+    // unknown every day — getUnknown() must return true so the service
+    // reports state:"unknown" rather than open/closed.
+    const record = pharmacy("Mo-Su unknown");
     await service.prepare([record]);
     service.now.set(new Date("2026-11-17T08:30:00.000Z"));
 
