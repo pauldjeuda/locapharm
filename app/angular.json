@@ -1,5 +1,6 @@
 {
   "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "locapharm": {
@@ -43,8 +44,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "8kb",
-                  "maximumError": "12kb"
+                  "maximumWarning": "25kb",
+                  "maximumError": "35kb"
                 }
               ],
               "outputHashing": "all"

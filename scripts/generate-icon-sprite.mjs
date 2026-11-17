@@ -49,12 +49,22 @@ for (const path of await walk(designRoot)) {
 if (glyphs.size === 0)
   throw new Error(`No Material Symbols found under ${designRoot}`);
 
+const SYMBOL_ALIASES = {
+  done: "check",
+  expand_more: "keyboard_arrow_down",
+  favorite_border: "favorite",
+  offline_bolt: "offline_pin",
+  phone: "call",
+  report_problem: "warning",
+};
+
 const symbols = [];
 for (const [name, needsFill] of [...glyphs.entries()].sort(([a], [b]) =>
   a.localeCompare(b),
 )) {
+  const resolvedName = SYMBOL_ALIASES[name] ?? name;
   for (const filled of needsFill ? [false, true] : [false]) {
-    const fileName = `${name}${filled ? "-fill" : ""}.svg`;
+    const fileName = `${resolvedName}${filled ? "-fill" : ""}.svg`;
     const sourcePath = join(packageRoot, fileName);
     const svg = await readFile(sourcePath, "utf8");
     const inner = svg
@@ -65,6 +75,11 @@ for (const [name, needsFill] of [...glyphs.entries()].sort(([a], [b]) =>
     symbols.push(
       `  <symbol id="icon-${name}${filled ? "-fill" : ""}" viewBox="0 0 48 48">${inner}</symbol>`,
     );
+    if (resolvedName !== name) {
+      symbols.push(
+        `  <symbol id="icon-${resolvedName}${filled ? "-fill" : ""}" viewBox="0 0 48 48">${inner}</symbol>`,
+      );
+    }
   }
 }
 

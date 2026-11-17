@@ -1836,7 +1836,6 @@ export class RoutePreviewPage implements OnInit {
 @Component({
   selector: "lp-navigation-page",
   standalone: true,
-  imports: [RouterLink],
   template: `
     <main class="lp-screen lp-screen--plain lp-nav-live-screen">
       <!-- Maneuver Banner (Top) -->
@@ -2086,7 +2085,7 @@ export class RoutePreviewPage implements OnInit {
             @if (pharmacy()!.phones?.length) {
               <a
                 class="lp-icon-button"
-                [href]="'tel:' + pharmacy()!.phones[0]"
+                [href]="'tel:' + pharmacy()!.phones![0].number"
                 [attr.aria-label]="english() ? 'Call' : 'Appeler'"
                 >☎</a
               >
@@ -2254,7 +2253,7 @@ export class NavigationPage implements OnInit {
           @if (pharmacy()?.phones?.length) {
             <a
               class="lp-button lp-button--full lp-row-between"
-              [href]="'tel:' + pharmacy()!.phones[0]"
+              [href]="'tel:' + pharmacy()!.phones![0].number"
             >
               <span class="lp-row"
                 ><span>☎</span
