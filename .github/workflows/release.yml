@@ -81,6 +81,7 @@ jobs:
           node ../scripts/set-android-version.mjs android/app/build.gradle "$VERSION"
           npx cap sync android
           cd android
+          chmod +x gradlew
           if [[ -n "$ANDROID_KEYSTORE_BASE64" && -n "$ANDROID_KEYSTORE_PASSWORD" && -n "$ANDROID_KEY_ALIAS" && -n "$ANDROID_KEY_PASSWORD" ]]; then
             ./gradlew --no-daemon assembleRelease
             source_apk="app/build/outputs/apk/release/app-release-unsigned.apk"
