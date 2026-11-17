@@ -692,7 +692,11 @@ async function readFeedbackPayload(
   }
 
   const message = input.message;
-  if (typeof message !== "string" || message.trim().length < 1 || message.length > 1000) {
+  if (
+    typeof message !== "string" ||
+    message.trim().length < 1 ||
+    message.length > 1000
+  ) {
     return { error: "invalid_message" };
   }
   const diagnosticsOptIn = input.diagnostics_opt_in;
@@ -925,10 +929,7 @@ async function submitFeedback(
       });
     }
 
-    const encryptedMessage = await encryptText(
-      payload.message,
-      encryptionKey,
-    );
+    const encryptedMessage = await encryptText(payload.message, encryptionKey);
     const reference = crypto.randomUUID();
     const result = await env.DB.prepare(
       `INSERT INTO feedback (
@@ -1338,9 +1339,9 @@ async function decryptText(
 ): Promise<string> {
   const key = await importReportKey(encodedKey, ["decrypt"]);
   const decrypted = await crypto.subtle.decrypt(
-    { name: "AES-GCM", iv: base64ToBytes(iv) },
+    { name: "AES-GCM", iv: base64ToBytes(iv) as BufferSource },
     key,
-    base64ToBytes(ciphertext),
+    base64ToBytes(ciphertext) as BufferSource,
   );
   return new TextDecoder().decode(decrypted);
 }
@@ -1351,7 +1352,13 @@ async function importReportKey(
 ): Promise<CryptoKey> {
   const rawKey = base64ToBytes(encodedKey);
   if (rawKey.byteLength !== 32) throw new Error("invalid_key");
-  return crypto.subtle.importKey("raw", rawKey, "AES-GCM", false, usages);
+  return crypto.subtle.importKey(
+    "raw",
+    rawKey as BufferSource,
+    "AES-GCM",
+    false,
+    usages,
+  );
 }
 
 async function hmacHex(secret: string, value: string): Promise<string> {

@@ -150,17 +150,16 @@ function parsePublicConfig(value: unknown): PublicAppConfig | null {
     return null;
   }
   const notice = value["notice"];
-  if (
-    notice !== null &&
-    (typeof notice !== "string" || notice.length > 240)
-  ) {
+  if (notice !== null && (typeof notice !== "string" || notice.length > 240)) {
     return null;
   }
 
   return value as unknown as PublicAppConfig;
 }
 
-function isEmergencyDirectory(value: unknown): value is RemoteEmergencyDirectory {
+function isEmergencyDirectory(
+  value: unknown,
+): value is RemoteEmergencyDirectory {
   if (
     !isRecord(value) ||
     value["schema_version"] !== 1 ||
@@ -196,8 +195,17 @@ function isEmergencyDirectory(value: unknown): value is RemoteEmergencyDirectory
   );
 }
 
-function isIntegerInRange(value: unknown, min: number, max: number): value is number {
-  return typeof value === "number" && Number.isInteger(value) && value >= min && value <= max;
+function isIntegerInRange(
+  value: unknown,
+  min: number,
+  max: number,
+): value is number {
+  return (
+    typeof value === "number" &&
+    Number.isInteger(value) &&
+    value >= min &&
+    value <= max
+  );
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

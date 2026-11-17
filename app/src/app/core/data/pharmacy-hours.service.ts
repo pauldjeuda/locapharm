@@ -75,8 +75,8 @@ export class PharmacyHoursService implements OnDestroy {
           new OpeningHours(
             record.opening_hours!.trim(),
             {
-              lat: record.lat,
-              lon: record.lon,
+              lat: String(record.lat),
+              lon: String(record.lon),
               address: {
                 country_code: "cm",
                 state: record.region ?? "",

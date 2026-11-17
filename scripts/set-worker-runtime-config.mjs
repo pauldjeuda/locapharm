@@ -1,6 +1,9 @@
 import { writeFile } from "node:fs/promises";
 
-const outputPath = new URL("../app/public/runtime-config.json", import.meta.url);
+const outputPath = new URL(
+  "../app/public/runtime-config.json",
+  import.meta.url,
+);
 const configuredUrl = process.env.LOCAPHARM_WORKER_BASE_URL?.trim();
 let workerBaseUrl = null;
 

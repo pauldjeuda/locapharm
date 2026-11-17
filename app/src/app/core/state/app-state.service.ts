@@ -59,7 +59,8 @@ export class AppStateService {
     if (values["unit"] === "mi") this.distanceUnit.set("mi");
     this.city.set(values["city"] ?? "");
 
-    const radius = values["radius"] === null ? Number.NaN : Number(values["radius"]);
+    const radius =
+      values["radius"] === null ? Number.NaN : Number(values["radius"]);
     if (Number.isFinite(radius)) {
       this.radiusKm.set(Math.max(1, Math.min(20, radius)));
     }

@@ -23,10 +23,7 @@ import { RemoteConfigService } from "../../core/data/remote-config.service";
 import { APP_VERSION } from "../../core/app-version";
 import { productPageStyles } from "./product.styles";
 import { PharmacyDataService } from "../../core/data/pharmacy-data.service";
-import {
-  PharmacyPhone,
-  PharmacyRecord,
-} from "../../core/data/pharmacy.models";
+import { PharmacyPhone, PharmacyRecord } from "../../core/data/pharmacy.models";
 import {
   PharmacyHoursService,
   PharmacyHoursStatus,
@@ -322,7 +319,9 @@ export class SearchPage implements OnInit {
             pharmacy.city,
             pharmacy.neighbourhood,
             pharmacy.address?.street,
-            ...(pharmacy.phones ?? []).map((phone: PharmacyPhone) => phone.number),
+            ...(pharmacy.phones ?? []).map(
+              (phone: PharmacyPhone) => phone.number,
+            ),
           ]
             .filter(Boolean)
             .join(" "),
@@ -1771,10 +1770,17 @@ export class RoutePreviewPage implements OnInit {
     const arrivalDate = new Date(Date.now() + min * 60000);
     const hh = String(arrivalDate.getHours()).padStart(2, "0");
     const mm = String(arrivalDate.getMinutes()).padStart(2, "0");
-    return this.english() ? `Estimated arrival around ${hh}:${mm}` : `Arrivée estimée vers ${hh}:${mm}`;
+    return this.english()
+      ? `Estimated arrival around ${hh}:${mm}`
+      : `Arrivée estimée vers ${hh}:${mm}`;
   }
 
-  private calcDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  private calcDistanceKm(
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number,
+  ): number {
     const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
     const dLon = ((lon2 - lon1) * Math.PI) / 180;
@@ -1794,7 +1800,11 @@ export class RoutePreviewPage implements OnInit {
     const shareText = `Locapharm: Itinéraire vers ${p.name} (${p.city || p.neighbourhood || ""})`;
     if (navigator.share) {
       try {
-        await navigator.share({ title: p.name, text: shareText, url: `https://pauldjeuda.github.io/locapharm/p/${p.id}` });
+        await navigator.share({
+          title: p.name,
+          text: shareText,
+          url: `https://pauldjeuda.github.io/locapharm/p/${p.id}`,
+        });
       } catch {
         // user cancelled share
       }
@@ -1830,49 +1840,174 @@ export class RoutePreviewPage implements OnInit {
   template: `
     <main class="lp-screen lp-screen--plain lp-nav-live-screen">
       <!-- Maneuver Banner (Top) -->
-      <header class="lp-maneuver-banner" [class.lp-maneuver-banner--reroute]="navState() === 'rerouting'" [class.lp-maneuver-banner--weak]="navState() === 'weak_gps'">
+      <header
+        class="lp-maneuver-banner"
+        [class.lp-maneuver-banner--reroute]="navState() === 'rerouting'"
+        [class.lp-maneuver-banner--weak]="navState() === 'weak_gps'"
+      >
         <div class="lp-maneuver-left">
           <span class="lp-maneuver-icon" aria-hidden="true">
-            {{ navState() === 'rerouting' ? '↻' : navState() === 'weak_gps' ? '🛰️' : '↱' }}
+            {{
+              navState() === "rerouting"
+                ? "↻"
+                : navState() === "weak_gps"
+                  ? "🛰️"
+                  : "↱"
+            }}
           </span>
           <div class="lp-maneuver-text">
-            @if (navState() === 'rerouting') {
-              <p class="lp-maneuver-dist">{{ english() ? "Rerouting…" : "Recalcul…" }}</p>
-              <p class="lp-maneuver-sub">{{ english() ? "You left the planned route" : "Vous avez quitté l'itinéraire" }}</p>
-            } @else if (navState() === 'weak_gps') {
-              <p class="lp-maneuver-dist">{{ english() ? "Weak GPS" : "Signal GPS faible" }}</p>
-              <p class="lp-maneuver-sub">{{ english() ? "Searching for satellites…" : "Recherche de satellites…" }}</p>
+            @if (navState() === "rerouting") {
+              <p class="lp-maneuver-dist">
+                {{ english() ? "Rerouting…" : "Recalcul…" }}
+              </p>
+              <p class="lp-maneuver-sub">
+                {{
+                  english()
+                    ? "You left the planned route"
+                    : "Vous avez quitté l'itinéraire"
+                }}
+              </p>
+            } @else if (navState() === "weak_gps") {
+              <p class="lp-maneuver-dist">
+                {{ english() ? "Weak GPS" : "Signal GPS faible" }}
+              </p>
+              <p class="lp-maneuver-sub">
+                {{
+                  english()
+                    ? "Searching for satellites…"
+                    : "Recherche de satellites…"
+                }}
+              </p>
             } @else {
               <p class="lp-maneuver-dist">120 m</p>
-              <p class="lp-maneuver-sub">{{ english() ? "Turn right onto Bd de la Liberté" : "Tournez à droite sur Bd de la Liberté" }}</p>
+              <p class="lp-maneuver-sub">
+                {{
+                  english()
+                    ? "Turn right onto Bd de la Liberté"
+                    : "Tournez à droite sur Bd de la Liberté"
+                }}
+              </p>
             }
           </div>
         </div>
         <div class="lp-maneuver-next">
-          <span>{{ english() ? "Then straight 400 m" : "Puis tout droit 400 m" }}</span>
+          <span>{{
+            english() ? "Then straight 400 m" : "Puis tout droit 400 m"
+          }}</span>
         </div>
       </header>
 
       <!-- 3D Perspective Road Map -->
       <div class="lp-nav-perspective-container">
         <div class="lp-nav-tilted-ground">
-          <svg class="lp-nav-svg-ground" viewBox="0 0 400 700" fill="none" preserveAspectRatio="none">
-            <rect x="15" y="40" width="105" height="130" rx="6" fill="#CED3DA" />
-            <rect x="135" y="20" width="130" height="90" rx="8" fill="#D7DCE2" />
-            <rect x="280" y="50" width="100" height="140" rx="6" fill="#CED3DA" />
-            <rect x="20" y="210" width="95" height="170" rx="6" fill="#CBD0D8" />
-            <rect x="290" y="225" width="95" height="155" rx="6" fill="#C6CCD4" />
-            <path d="M0 190 L400 190" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" />
-            <path d="M0 400 L400 400" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" />
-            <path d="M 200 700 L 200 490" stroke="#9EA4AD" stroke-width="22" stroke-linecap="round" />
-            <path d="M 200 700 L 200 490" stroke="#D3D8E0" stroke-width="14" stroke-linecap="round" />
-            <path d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M 195 440 L 200 432 L 205 440 M 195 340 L 200 332 L 205 340 M 195 240 L 200 232 L 205 240" stroke="#73796E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135" stroke="#181C20" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
-            <path class="lp-dash-animated" d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135" stroke="#C7EF00" stroke-width="8" stroke-dasharray="12 10" stroke-linecap="round" stroke-linejoin="round" />
+          <svg
+            class="lp-nav-svg-ground"
+            viewBox="0 0 400 700"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <rect
+              x="15"
+              y="40"
+              width="105"
+              height="130"
+              rx="6"
+              fill="#CED3DA"
+            />
+            <rect
+              x="135"
+              y="20"
+              width="130"
+              height="90"
+              rx="8"
+              fill="#D7DCE2"
+            />
+            <rect
+              x="280"
+              y="50"
+              width="100"
+              height="140"
+              rx="6"
+              fill="#CED3DA"
+            />
+            <rect
+              x="20"
+              y="210"
+              width="95"
+              height="170"
+              rx="6"
+              fill="#CBD0D8"
+            />
+            <rect
+              x="290"
+              y="225"
+              width="95"
+              height="155"
+              rx="6"
+              fill="#C6CCD4"
+            />
+            <path
+              d="M0 190 L400 190"
+              stroke="#FFFFFF"
+              stroke-width="18"
+              stroke-linecap="round"
+            />
+            <path
+              d="M0 400 L400 400"
+              stroke="#FFFFFF"
+              stroke-width="16"
+              stroke-linecap="round"
+            />
+            <path
+              d="M 200 700 L 200 490"
+              stroke="#9EA4AD"
+              stroke-width="22"
+              stroke-linecap="round"
+            />
+            <path
+              d="M 200 700 L 200 490"
+              stroke="#D3D8E0"
+              stroke-width="14"
+              stroke-linecap="round"
+            />
+            <path
+              d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135"
+              stroke="#FFFFFF"
+              stroke-width="24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 195 440 L 200 432 L 205 440 M 195 340 L 200 332 L 205 340 M 195 240 L 200 232 L 205 240"
+              stroke="#73796E"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135"
+              stroke="#181C20"
+              stroke-width="12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="lp-dash-animated"
+              d="M 200 490 L 200 190 Q 200 135 245 135 L 400 135"
+              stroke="#C7EF00"
+              stroke-width="8"
+              stroke-dasharray="12 10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
             <g transform="translate(355, 115)">
               <circle cx="16" cy="16" r="15" fill="#3F5A36" />
-              <path d="M16 9 V23 M9 16 H23" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" />
+              <path
+                d="M16 9 V23 M9 16 H23"
+                stroke="#FFFFFF"
+                stroke-width="3.5"
+                stroke-linecap="round"
+              />
             </g>
           </svg>
           <div class="lp-nav-user-puck">
@@ -1886,13 +2021,28 @@ export class RoutePreviewPage implements OnInit {
 
         <!-- Simulation state switcher pills (dev / demo) -->
         <div class="lp-nav-state-switcher">
-          <button class="lp-chip" type="button" [attr.aria-pressed]="navState() === 'normal'" (click)="navState.set('normal')">
+          <button
+            class="lp-chip"
+            type="button"
+            [attr.aria-pressed]="navState() === 'normal'"
+            (click)="navState.set('normal')"
+          >
             {{ english() ? "Normal" : "Normal" }}
           </button>
-          <button class="lp-chip" type="button" [attr.aria-pressed]="navState() === 'rerouting'" (click)="navState.set('rerouting')">
+          <button
+            class="lp-chip"
+            type="button"
+            [attr.aria-pressed]="navState() === 'rerouting'"
+            (click)="navState.set('rerouting')"
+          >
             {{ english() ? "Reroute" : "Recalcul" }}
           </button>
-          <button class="lp-chip" type="button" [attr.aria-pressed]="navState() === 'weak_gps'" (click)="navState.set('weak_gps')">
+          <button
+            class="lp-chip"
+            type="button"
+            [attr.aria-pressed]="navState() === 'weak_gps'"
+            (click)="navState.set('weak_gps')"
+          >
             GPS
           </button>
         </div>
@@ -1912,8 +2062,13 @@ export class RoutePreviewPage implements OnInit {
             </div>
             <span class="lp-copy--small lp-muted">{{ etaText() }}</span>
           </div>
-          <button class="lp-icon-button" type="button" (click)="toggleMute()" [attr.aria-label]="isMuted() ? 'Activer le son' : 'Couper le son'">
-            {{ isMuted() ? '🔇' : '🔊' }}
+          <button
+            class="lp-icon-button"
+            type="button"
+            (click)="toggleMute()"
+            [attr.aria-label]="isMuted() ? 'Activer le son' : 'Couper le son'"
+          >
+            {{ isMuted() ? "🔇" : "🔊" }}
           </button>
         </div>
 
@@ -1923,20 +2078,36 @@ export class RoutePreviewPage implements OnInit {
               <span class="lp-pharmacy-pin" aria-hidden="true">✚</span>
               <div class="lp-nav-dest-copy">
                 <strong>{{ pharmacy()!.name }}</strong>
-                <span class="lp-copy--small lp-muted">{{ pharmacy()!.city || pharmacy()!.neighbourhood || "Douala" }}</span>
+                <span class="lp-copy--small lp-muted">{{
+                  pharmacy()!.city || pharmacy()!.neighbourhood || "Douala"
+                }}</span>
               </div>
             </div>
             @if (pharmacy()!.phones?.length) {
-              <a class="lp-icon-button" [href]="'tel:' + pharmacy()!.phones[0]" [attr.aria-label]="english() ? 'Call' : 'Appeler'">☎</a>
+              <a
+                class="lp-icon-button"
+                [href]="'tel:' + pharmacy()!.phones[0]"
+                [attr.aria-label]="english() ? 'Call' : 'Appeler'"
+                >☎</a
+              >
             }
           </div>
         }
 
         <div class="lp-row-between" style="gap: 10px; margin-top: 4px;">
-          <button class="lp-button lp-button--sage" type="button" style="flex: 1;" (click)="simulateArrival()">
+          <button
+            class="lp-button lp-button--sage"
+            type="button"
+            style="flex: 1;"
+            (click)="simulateArrival()"
+          >
             {{ english() ? "Arrive" : "Arriver" }} ↗
           </button>
-          <button class="lp-button lp-button--dark" type="button" (click)="exitNavigation()">
+          <button
+            class="lp-button lp-button--dark"
+            type="button"
+            (click)="exitNavigation()"
+          >
             {{ english() ? "End Trip" : "Terminer" }}
           </button>
         </div>
@@ -1971,7 +2142,9 @@ export class NavigationPage implements OnInit {
     const arrivalDate = new Date(Date.now() + 4 * 60000);
     const hh = String(arrivalDate.getHours()).padStart(2, "0");
     const mm = String(arrivalDate.getMinutes()).padStart(2, "0");
-    return this.english() ? `Arrival around ${hh}:${mm}` : `Arrivée vers ${hh}:${mm}`;
+    return this.english()
+      ? `Arrival around ${hh}:${mm}`
+      : `Arrivée vers ${hh}:${mm}`;
   }
 
   simulateArrival(): void {
@@ -2002,9 +2175,18 @@ export class NavigationPage implements OnInit {
       <div class="lp-row-between lp-arrival-topbar">
         <div class="lp-pill">
           <span class="lp-dot animate-pulse"></span>
-          <span>{{ english() ? "High Precision GPS · Douala" : "GPS Haute Précision · Douala" }}</span>
+          <span>{{
+            english()
+              ? "High Precision GPS · Douala"
+              : "GPS Haute Précision · Douala"
+          }}</span>
         </div>
-        <a class="lp-icon-button" routerLink="/tabs/map" [attr.aria-label]="english() ? 'Close' : 'Fermer'">×</a>
+        <a
+          class="lp-icon-button"
+          routerLink="/tabs/map"
+          [attr.aria-label]="english() ? 'Close' : 'Fermer'"
+          >×</a
+        >
       </div>
 
       <!-- 3D Destination Map Viewport Area -->
@@ -2016,7 +2198,9 @@ export class NavigationPage implements OnInit {
           <div class="lp-arrival-marker-anchor">
             <div class="lp-pill lp-arrival-dest-pill">
               <span class="lp-dot"></span>
-              <span>{{ english() ? "DESTINATION REACHED" : "DESTINATION ATTEINTE" }}</span>
+              <span>{{
+                english() ? "DESTINATION REACHED" : "DESTINATION ATTEINTE"
+              }}</span>
             </div>
             <div class="lp-arrival-building-marker">
               <span class="lp-arrival-cross">✚</span>
@@ -2033,30 +2217,59 @@ export class NavigationPage implements OnInit {
           <div class="lp-arrival-big-check">
             <span aria-hidden="true">✓</span>
           </div>
-          <h1 class="lp-heading lp-heading--large">{{ english() ? "You have arrived" : "Vous êtes arrivé" }}</h1>
+          <h1 class="lp-heading lp-heading--large">
+            {{ english() ? "You have arrived" : "Vous êtes arrivé" }}
+          </h1>
           <div class="lp-arrival-pharmacy-info">
-            <h2 class="lp-section-title">{{ pharmacy()?.name || (english() ? "Pharmacy" : "Pharmacie") }}</h2>
+            <h2 class="lp-section-title">
+              {{ pharmacy()?.name || (english() ? "Pharmacy" : "Pharmacie") }}
+            </h2>
             <p class="lp-copy lp-copy--small lp-muted">
-              {{ pharmacy()?.city || pharmacy()?.neighbourhood || (english() ? "Location verified" : "Emplacement vérifié") }}
+              {{
+                pharmacy()?.city ||
+                  pharmacy()?.neighbourhood ||
+                  (english() ? "Location verified" : "Emplacement vérifié")
+              }}
             </p>
           </div>
         </div>
 
         <div class="lp-card lp-card--soft lp-arrival-notice">
-          <strong>🛡️ {{ english() ? "Safety verification" : "Vérification de sécurité" }}</strong>
+          <strong
+            >🛡️
+            {{
+              english() ? "Safety verification" : "Vérification de sécurité"
+            }}</strong
+          >
           <p class="lp-copy lp-copy--small">
-            {{ english() ? "Check that the pharmacy is open and the night duty window is operational before parking or leaving your ride." : "Vérifiez que la pharmacie est bien ouverte et que le guichet de garde est opérationnel." }}
+            {{
+              english()
+                ? "Check that the pharmacy is open and the night duty window is operational before parking or leaving your ride."
+                : "Vérifiez que la pharmacie est bien ouverte et que le guichet de garde est opérationnel."
+            }}
           </p>
         </div>
 
         <div class="lp-stack" style="gap: 10px;">
           @if (pharmacy()?.phones?.length) {
-            <a class="lp-button lp-button--full lp-row-between" [href]="'tel:' + pharmacy()!.phones[0]">
-              <span class="lp-row"><span>☎</span><strong>{{ english() ? "Call the pharmacy" : "Appeler la pharmacie" }}</strong></span>
+            <a
+              class="lp-button lp-button--full lp-row-between"
+              [href]="'tel:' + pharmacy()!.phones[0]"
+            >
+              <span class="lp-row"
+                ><span>☎</span
+                ><strong>{{
+                  english() ? "Call the pharmacy" : "Appeler la pharmacie"
+                }}</strong></span
+              >
               <span>↗</span>
             </a>
           }
-          <button class="lp-button lp-button--full lp-button--light" type="button" (click)="finishCourse()">
+          <button
+            class="lp-button lp-button--full lp-button--light"
+            type="button"
+            (click)="finishCourse()"
+          >
             {{ english() ? "Complete Trip" : "Terminer la course" }}
           </button>
         </div>
@@ -2065,17 +2278,35 @@ export class NavigationPage implements OnInit {
         <div class="lp-card lp-arrival-community-card">
           <div class="lp-row" style="gap: 6px;">
             <span aria-hidden="true">👥</span>
-            <span class="lp-eyebrow">{{ english() ? "COMMUNITY MUTUAL AID" : "ENTRAIDE COMMUNAUTAIRE" }}</span>
+            <span class="lp-eyebrow">{{
+              english() ? "COMMUNITY MUTUAL AID" : "ENTRAIDE COMMUNAUTAIRE"
+            }}</span>
           </div>
           <p class="lp-section-title" style="margin-top: 4px;">
-            {{ english() ? "Was this pharmacy actually on duty?" : "Cette pharmacie était-elle bien de garde ?" }}
+            {{
+              english()
+                ? "Was this pharmacy actually on duty?"
+                : "Cette pharmacie était-elle bien de garde ?"
+            }}
           </p>
 
           <div class="lp-arrival-vote-buttons">
-            <button class="lp-chip lp-chip--vote-yes" type="button" [class.voted]="voted() === 'yes'" [disabled]="voteSending()" (click)="submitVote(true)">
+            <button
+              class="lp-chip lp-chip--vote-yes"
+              type="button"
+              [class.voted]="voted() === 'yes'"
+              [disabled]="voteSending()"
+              (click)="submitVote(true)"
+            >
               <span>👍 {{ english() ? "Yes, on duty" : "Oui, de garde" }}</span>
             </button>
-            <button class="lp-chip lp-chip--vote-no" type="button" [class.voted]="voted() === 'no'" [disabled]="voteSending()" (click)="submitVote(false)">
+            <button
+              class="lp-chip lp-chip--vote-no"
+              type="button"
+              [class.voted]="voted() === 'no'"
+              [disabled]="voteSending()"
+              (click)="submitVote(false)"
+            >
               <span>👎 {{ english() ? "No, closed" : "Non, fermée" }}</span>
             </button>
           </div>
@@ -2083,14 +2314,28 @@ export class NavigationPage implements OnInit {
           @if (voteAcknowledged()) {
             <div class="lp-arrival-vote-thanks" role="status">
               <span>🎉</span>
-              <strong>{{ english() ? "Thank you! Information transmitted to the community." : "Merci ! Information transmise à la communauté." }}</strong>
+              <strong>{{
+                english()
+                  ? "Thank you! Information transmitted to the community."
+                  : "Merci ! Information transmise à la communauté."
+              }}</strong>
             </div>
           }
         </div>
 
         <div class="lp-arrival-footer-link">
-          <a class="lp-text-link" [routerLink]="pharmacy() ? ['/report', pharmacy()!.id] : '/tabs/map'">
-            ⚠️ {{ english() ? "Report an access problem" : "Signaler un problème d'accès" }}
+          <a
+            class="lp-text-link"
+            [routerLink]="
+              pharmacy() ? ['/report', pharmacy()!.id] : '/tabs/map'
+            "
+          >
+            ⚠️
+            {{
+              english()
+                ? "Report an access problem"
+                : "Signaler un problème d'accès"
+            }}
           </a>
         </div>
       </section>
@@ -2126,7 +2371,7 @@ export class ArrivalPage implements OnInit {
       const config = await this.remote.load();
       const baseUrl = this.remote.workerBaseUrl();
       if (config?.features?.community_votes && baseUrl) {
-        const installId = await this.installationId.get();
+        const installId = await this.installationId.getOrCreate();
         const dutyWindow = new Date().toISOString().slice(0, 10);
         await firstValueFrom(
           this.http.post(`${baseUrl}/votes`, {

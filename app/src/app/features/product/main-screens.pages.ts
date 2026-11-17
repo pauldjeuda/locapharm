@@ -510,7 +510,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
     };
     const source = this.map.getSource("pharmacies");
     if (source?.type === "geojson") {
-      source.setData(collection);
+      (source as import("maplibre-gl").GeoJSONSource).setData(collection);
       return;
     }
     this.map.addSource("pharmacies", {
@@ -962,7 +962,9 @@ export class GuardsPage implements OnInit {
     const selectedCity = normalizeText(this.state.city());
     let records: PharmacyRecord[] = this.data
       .pharmacies()
-      .filter((record: PharmacyRecord) => this.hours.status(record).state === "open");
+      .filter(
+        (record: PharmacyRecord) => this.hours.status(record).state === "open",
+      );
     if (location) {
       records = records
         .map((rec: PharmacyRecord) => ({
@@ -974,14 +976,20 @@ export class GuardsPage implements OnInit {
             rec.lon,
           ),
         }))
-        .filter(({ distance }: { distance: number }) => distance <= this.state.radiusKm())
-        .sort((a: { distance: number }, b: { distance: number }) => a.distance - b.distance)
+        .filter(
+          ({ distance }: { distance: number }) =>
+            distance <= this.state.radiusKm(),
+        )
+        .sort(
+          (a: { distance: number }, b: { distance: number }) =>
+            a.distance - b.distance,
+        )
         .map(({ rec }: { rec: PharmacyRecord }) => rec);
     } else if (selectedCity) {
       records = records.filter((rec: PharmacyRecord) =>
-        normalizeText(
-          `${rec.city ?? ""} ${rec.neighbourhood ?? ""}`,
-        ).includes(selectedCity),
+        normalizeText(`${rec.city ?? ""} ${rec.neighbourhood ?? ""}`).includes(
+          selectedCity,
+        ),
       );
     } else {
       return [];
@@ -1414,7 +1422,9 @@ export class FavoritesPage {
           <hr class="lp-separator" />
           <a class="lp-setting lp-setting-link" routerLink="/feedback"
             ><span class="lp-setting-copy"
-              ><strong>{{ english() ? "Report a bug" : "Signaler un bug" }}</strong
+              ><strong>{{
+                english() ? "Report a bug" : "Signaler un bug"
+              }}</strong
               ><span class="lp-copy lp-copy--small">{{
                 english()
                   ? "Send optional feedback without your location"

@@ -4,6 +4,7 @@ import { RouterLink } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import {
   RemoteConfigService,
+  type RemoteEmergencyContact,
   type RemoteEmergencyDirectory,
 } from "../../core/data/remote-config.service";
 import { AppStateService } from "../../core/state/app-state.service";
@@ -182,13 +183,13 @@ export class EmergencyPage implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       const data = await firstValueFrom(
-        this.http.get<EmergencyDirectory>("assets/data/emergency.json"),
+        this.http.get<RemoteEmergencyDirectory>("assets/data/emergency.json"),
       );
       if (
         data.schema_version === 1 &&
         Array.isArray(data.contacts) &&
         data.contacts.every(
-          (contact) =>
+          (contact: RemoteEmergencyContact) =>
             /^\d{2,3}$/.test(contact.mobile) &&
             /^\d{2,3}$/.test(contact.landline),
         )
