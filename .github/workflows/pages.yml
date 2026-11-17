@@ -55,7 +55,7 @@ jobs:
             fi
           fi
           LOCAPHARM_RELEASE_JSON="$RUNNER_TEMP/locapharm-latest-release.json" LOCAPHARM_APK_SHA256="$apk_sha256" node scripts/build-pages-manifest.mjs
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deployment
