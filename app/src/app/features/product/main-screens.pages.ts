@@ -959,28 +959,28 @@ export class GuardsPage implements OnInit {
 
   openPharmacies(): PharmacyRecord[] {
     const location = this.state.locationFix();
-    const selectedCity = normalizeSearch(this.state.city());
-    let records = this.data
+    const selectedCity = normalizeText(this.state.city());
+    let records: PharmacyRecord[] = this.data
       .pharmacies()
-      .filter((record) => this.hours.status(record).state === "open");
+      .filter((record: PharmacyRecord) => this.hours.status(record).state === "open");
     if (location) {
       records = records
-        .map((record) => ({
-          record,
+        .map((rec: PharmacyRecord) => ({
+          rec,
           distance: distanceKm(
             location.latitude,
             location.longitude,
-            record.lat,
-            record.lon,
+            rec.lat,
+            rec.lon,
           ),
         }))
-        .filter(({ distance }) => distance <= this.state.radiusKm())
-        .sort((a, b) => a.distance - b.distance)
-        .map(({ record }) => record);
+        .filter(({ distance }: { distance: number }) => distance <= this.state.radiusKm())
+        .sort((a: { distance: number }, b: { distance: number }) => a.distance - b.distance)
+        .map(({ rec }: { rec: PharmacyRecord }) => rec);
     } else if (selectedCity) {
-      records = records.filter((record) =>
-        normalizeSearch(
-          `${record.city ?? ""} ${record.neighbourhood ?? ""}`,
+      records = records.filter((rec: PharmacyRecord) =>
+        normalizeText(
+          `${rec.city ?? ""} ${rec.neighbourhood ?? ""}`,
         ).includes(selectedCity),
       );
     } else {
@@ -1124,7 +1124,7 @@ export class FavoritesPage {
   constructor() {
     void this.data
       .loadInstalledPharmacies()
-      .then((records) => this.hours.prepare(records))
+      .then((records: PharmacyRecord[]) => this.hours.prepare(records))
       .catch(() => []);
   }
 
@@ -1132,7 +1132,7 @@ export class FavoritesPage {
     const favorites = new Set(this.state.favoriteIds());
     return this.data
       .pharmacies()
-      .filter((pharmacy) => favorites.has(pharmacy.id));
+      .filter((pharmacy: PharmacyRecord) => favorites.has(pharmacy.id));
   }
   english(): boolean {
     return this.state.language() === "en";

@@ -63,7 +63,7 @@ export class PharmacyHoursService implements OnDestroy {
         this.parsers.set(parserKey(record), null);
       }
       this.parserReady.set(true);
-      this.parserRevision.update((revision) => revision + 1);
+      this.parserRevision.update((revision: number) => revision + 1);
       return;
     }
     for (const record of scheduledRecords) {
@@ -96,7 +96,7 @@ export class PharmacyHoursService implements OnDestroy {
       }
     }
     this.parserReady.set(true);
-    this.parserRevision.update((revision) => revision + 1);
+    this.parserRevision.update((revision: number) => revision + 1);
   }
 
   status(record: PharmacyRecord): PharmacyHoursStatus {
@@ -158,7 +158,7 @@ function parserKey(record: PharmacyRecord): string {
   return `${record.region ?? ""}:${openingHours}${location}`;
 }
 
-function toCameroonWallTime(instant: Date): Date {
+function toCameroonWallTime(instant: Date): Date | undefined {
   const parts = CAMEROON_TIME_FORMATTER.formatToParts(instant);
   const part = (type: Intl.DateTimeFormatPartTypes): number =>
     Number(parts.find((item) => item.type === type)?.value ?? "0");

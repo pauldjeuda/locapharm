@@ -246,7 +246,10 @@ async function sha256(bytes: Uint8Array): Promise<string> {
       "Le contrôle d’intégrité n’est pas disponible sur cet appareil.",
     );
   }
-  const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+  const digest = await globalThis.crypto.subtle.digest(
+    "SHA-256",
+    bytes as BufferSource,
+  );
   return [...new Uint8Array(digest)]
     .map((value) => value.toString(16).padStart(2, "0"))
     .join("");

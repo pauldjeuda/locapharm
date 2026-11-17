@@ -132,7 +132,8 @@ export class PharmacyDatabaseService {
       [REGION_CODE],
     );
     return (result.values ?? []).map(
-      (row) => JSON.parse(String(row["raw_json"])) as PharmacyRecord,
+      (row: Record<string, unknown>) =>
+        JSON.parse(String(row["raw_json"])) as PharmacyRecord,
     );
   }
 

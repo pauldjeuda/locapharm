@@ -23,7 +23,10 @@ import { RemoteConfigService } from "../../core/data/remote-config.service";
 import { APP_VERSION } from "../../core/app-version";
 import { productPageStyles } from "./product.styles";
 import { PharmacyDataService } from "../../core/data/pharmacy-data.service";
-import { PharmacyRecord } from "../../core/data/pharmacy.models";
+import {
+  PharmacyPhone,
+  PharmacyRecord,
+} from "../../core/data/pharmacy.models";
 import {
   PharmacyHoursService,
   PharmacyHoursStatus,
@@ -301,7 +304,7 @@ export class SearchPage implements OnInit {
       ...new Set(
         this.data
           .pharmacies()
-          .map((pharmacy) => pharmacy.city)
+          .map((pharmacy: PharmacyRecord) => pharmacy.city)
           .filter((city): city is string => Boolean(city)),
       ),
     ].sort((a, b) => a.localeCompare(b, "fr"));
@@ -312,14 +315,14 @@ export class SearchPage implements OnInit {
     if (!term) return [];
     return this.data
       .pharmacies()
-      .filter((pharmacy) =>
+      .filter((pharmacy: PharmacyRecord) =>
         normalizeSearch(
           [
             pharmacy.name,
             pharmacy.city,
             pharmacy.neighbourhood,
             pharmacy.address?.street,
-            ...(pharmacy.phones ?? []).map((phone) => phone.number),
+            ...(pharmacy.phones ?? []).map((phone: PharmacyPhone) => phone.number),
           ]
             .filter(Boolean)
             .join(" "),
@@ -1961,7 +1964,7 @@ export class NavigationPage implements OnInit {
   }
 
   toggleMute(): void {
-    this.isMuted.update((m) => !m);
+    this.isMuted.update((m: boolean) => !m);
   }
 
   etaText(): string {
@@ -2289,11 +2292,14 @@ export class SystemPage implements OnDestroy {
       .loadInstalledPharmacies()
       .catch(() => [])
       .finally(() => this.packLoading.set(false));
-    void Network.addListener("networkStatusChange", (status) => {
-      this.connected.set(status.connected);
-      this.networkType.set(status.connectionType);
-    })
-      .then((handle) => {
+    void Network.addListener(
+      "networkStatusChange",
+      (status: { connected: boolean; connectionType: string }) => {
+        this.connected.set(status.connected);
+        this.networkType.set(status.connectionType);
+      },
+    )
+      .then((handle: { remove: () => Promise<void> }) => {
         if (this.destroyed) void handle.remove();
         else this.handle = handle;
       })
