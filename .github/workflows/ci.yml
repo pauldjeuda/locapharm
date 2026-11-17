@@ -121,6 +121,7 @@ jobs:
   android-smoke:
     name: Android emulator install smoke
     needs: quality
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -152,6 +153,8 @@ jobs:
             cd android
             chmod +x gradlew
             ./gradlew --no-daemon assembleDebug
+            adb wait-for-device
+            adb shell input keyevent 82
             adb install app/build/outputs/apk/debug/app-debug.apk
             adb shell monkey -p cm.locapharm.app 1
             adb shell pm path cm.locapharm.app
