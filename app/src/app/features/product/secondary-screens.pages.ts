@@ -1717,10 +1717,10 @@ export class RoutePreviewPage implements OnInit {
   async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get("id") ?? "";
     this.pharmacy.set(await this.data.pharmacyById(id).catch(() => null));
-    const mode = this.state.defaultTransitMode();
-    if (mode === "motorcycle") this.travelMode.set("moto");
-    else if (mode === "driving") this.travelMode.set("car");
-    else this.travelMode.set("walking");
+    const radius = this.state.radiusKm();
+    if (radius <= 2) this.travelMode.set("walking");
+    else if (radius <= 8) this.travelMode.set("moto");
+    else this.travelMode.set("car");
   }
 
   durationForMode(mode: "walking" | "moto" | "car"): string {
@@ -1728,7 +1728,7 @@ export class RoutePreviewPage implements OnInit {
     const fix = this.state.locationFix();
     let km = 1.4;
     if (p && fix) {
-      km = this.calcDistanceKm(fix.lat, fix.lon, p.lat, p.lon);
+      km = this.calcDistanceKm(fix.latitude, fix.longitude, p.lat, p.lon);
     }
     const detour = km * 1.3;
     let speed = 4.5;
@@ -1747,7 +1747,7 @@ export class RoutePreviewPage implements OnInit {
     const fix = this.state.locationFix();
     let km = 1.4;
     if (p && fix) {
-      km = this.calcDistanceKm(fix.lat, fix.lon, p.lat, p.lon);
+      km = this.calcDistanceKm(fix.latitude, fix.longitude, p.lat, p.lon);
     }
     return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(1)} km`;
   }
@@ -1757,7 +1757,7 @@ export class RoutePreviewPage implements OnInit {
     const fix = this.state.locationFix();
     let km = 1.7;
     if (p && fix) {
-      km = this.calcDistanceKm(fix.lat, fix.lon, p.lat, p.lon) + 0.3;
+      km = this.calcDistanceKm(fix.latitude, fix.longitude, p.lat, p.lon) + 0.3;
     }
     return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(1)} km`;
   }

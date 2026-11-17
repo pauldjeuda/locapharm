@@ -121,7 +121,7 @@ export class DevStatesPage {
       folder: "carte_mode_sombre_dark_theme",
       route: "/tabs/map",
       description: "Palette sombre #161b19, néon lime sur tracé, GPS haute précision.",
-      action: () => this.state.setTheme("dark"),
+      action: () => void this.state.setThemeMode("dark"),
     },
     {
       id: "filters",
