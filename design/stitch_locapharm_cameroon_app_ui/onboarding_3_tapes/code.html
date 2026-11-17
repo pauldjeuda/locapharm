@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#c7ef00", "surface-dim": "#d7dae0", "surface-variant": "#e0e3e8", "on-primary-container": "#e8ffd9", "on-surface-variant": "#43483f", "on-secondary-fixed-variant": "#3e4c00", "on-secondary-container": "#576a00", "surface-container-high": "#e5e8ee", "inverse-primary": "#aed09d", "surface-bright": "#f7f9ff", "on-surface": "#181c20", "inverse-on-surface": "#eef1f6", "tertiary": "#45603b", "on-primary": "#ffffff", "error-container": "#ffdad6", "tertiary-container": "#5d7952", "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-fixed": "#062102", "on-secondary": "#ffffff", "secondary-fixed-dim": "#b1d500", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#314e27", "on-tertiary-fixed-variant": "#334d2b", "on-tertiary-container": "#e6ffd8", "tertiary-fixed": "#ccecbd", "primary-container": "#5b7a4e", "primary": "#436137", "secondary-fixed": "#caf208", "surface-container-highest": "#e0e3e8", "background": "#f7f9ff", "outline": "#73796e", "tertiary-fixed-dim": "#b0cfa2", "surface-container": "#ebeef4", "surface-container-low": "#f1f4f9", "on-error-container": "#93000a", "surface": "#f7f9ff", "on-tertiary-fixed": "#082104", "on-background": "#181c20", "inverse-surface": "#2d3135", "surface-tint": "#48663c", "outline-variant": "#c3c8bc", "secondary": "#536500", "on-secondary-fixed": "#171e00", "primary-fixed": "#c9edb7", "primary-fixed-dim": "#aed09d" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.25rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "data-metric": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Syne"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Syne"], "headline-md": ["Syne"], "headline-sm": ["Syne"], "headline-lg-mobile": ["Syne"], "body-md": ["Inter"], "headline-xl": ["Syne"] }, fontSize: { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "700" }], "data-metric": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-tertiary font-body-md text-body-md text-on-tertiary min-h-screen flex flex-col relative antialiased"><main class="flex-1 flex flex-col relative w-full pt-safe pb-safe bg-tertiary"><div class="flex flex-col w-full pb-8">
+<!-- Main Interactive Onboarding Card Container -->
+<div class="w-full px-margin">
+<div class="w-full bg-surface-container-lowest rounded-lg shadow-xl overflow-hidden relative flex flex-col min-h-[580px] justify-between p-space-lg text-on-surface">
+<!-- Top Bar: Step Indicator & Skip Button -->
+<div class="flex items-center justify-between w-full z-10">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">CM</span>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Officines 237</span>
+</div>
+<button class="font-label-md text-label-md text-outline hover:text-on-surface active:opacity-70 transition-colors py-1 px-2.5 rounded-full bg-surface-container-low" id="skipBtn" onclick="goToStep(2)">
+          Passer
+        </button>
+</div>
+<!-- Slides Carousel Wrapper (Tracks current step) -->
+<div class="relative w-full my-space-md overflow-hidden">
+<div class="flex w-full transition-transform duration-500 ease-out" id="slideTrack">
+<!-- Slide 1 -->
+<div class="w-full shrink-0 flex flex-col items-center">
+<!-- Isometric 3D Map Vector Illustration 1 -->
+<div class="w-full h-56 relative rounded-lg bg-surface-container-low overflow-hidden flex items-center justify-center p-4">
+<!-- Decorative Ambient Glow -->
+<div class="absolute w-36 h-36 rounded-full bg-secondary-container/25 blur-2xl -top-6 -right-6 pointer-events-none"></div>
+<!-- Stylized Isometric Map Canvas -->
+<svg class="w-full h-full max-w-[280px]" fill="none" viewbox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Ground Base -->
+<polygon fill="#e0e3e8" points="140,25 260,85 140,175 20,115"></polygon>
+<polygon fill="#d7dae0" points="20,115 140,175 140,188 20,128"></polygon>
+<polygon fill="#c3c8bc" points="260,85 140,175 140,188 260,98"></polygon>
+<!-- White Street Grid / Arteries -->
+<path d="M55,95 L225,145" stroke="#FFFFFF" stroke-linecap="round" stroke-width="12"></path>
+<path d="M75,55 L205,145" stroke="#FFFFFF" stroke-linecap="round" stroke-width="9"></path>
+<path d="M190,60 L90,145" stroke="#FFFFFF" stroke-linecap="round" stroke-width="8"></path>
+<!-- Isometric Stylized Buildings (Grey Tones) -->
+<!-- Building A -->
+<polygon fill="#d7dae0" points="80,75 110,60 110,85 80,100"></polygon>
+<polygon fill="#c3c8bc" points="110,60 135,72 135,97 110,85"></polygon>
+<polygon fill="#ebeef4" points="80,75 110,60 135,72 105,87"></polygon>
+<!-- Building B (Akwa commercial hub) -->
+<polygon fill="#d7dae0" points="160,80 185,68 185,100 160,112"></polygon>
+<polygon fill="#c3c8bc" points="185,68 205,78 205,110 185,100"></polygon>
+<polygon fill="#f1f4f9" points="160,80 185,68 205,78 180,90"></polygon>
+<!-- Building C (Small hospital/complex) -->
+<polygon fill="#c3c8bc" points="120,105 145,93 145,120 120,132"></polygon>
+<polygon fill="#b0cfa2" points="145,93 165,103 165,130 145,120"></polygon>
+<polygon fill="#ffffff" points="120,105 145,93 165,103 140,115"></polygon>
+<!-- High-Voltage Lime Dotted Route -->
+<path d="M70,110 Q110,130 145,105 T195,95" fill="none" stroke="#536500" stroke-dasharray="2 6" stroke-linecap="round" stroke-width="5"></path>
+<path d="M70,110 Q110,130 145,105 T195,95" fill="none" stroke="#caf208" stroke-dasharray="4 6" stroke-linecap="round" stroke-width="4"></path>
+<!-- Origin Radar Pulse Dot -->
+<circle cx="70" cy="110" fill="#caf208" fill-opacity="0.35" r="10"></circle>
+<circle cx="70" cy="110" fill="#181c20" r="4.5"></circle>
+<!-- Lime Geolocation Pin Target (Pharmacy) -->
+<g transform="translate(195, 75)">
+<!-- Shadow -->
+<ellipse cx="0" cy="22" fill="#181c20" fill-opacity="0.25" rx="7" ry="3"></ellipse>
+<!-- Pin Body -->
+<path d="M0,0 C6,0 11,5 11,11 C11,18 0,26 0,26 C0,26 -11,18 -11,11 C-11,5 -6,0 0,0 Z" fill="#caf208"></path>
+<circle cx="0" cy="10" fill="#181c20" r="4"></circle>
+<!-- Cross Emblem inside Pin -->
+<rect fill="#caf208" height="4" width="2" x="-1" y="8"></rect>
+<rect fill="#caf208" height="2" width="4" x="-2" y="9"></rect>
+</g>
+</svg>
+</div>
+<!-- Content Details Slide 1 -->
+<div class="w-full mt-space-md text-left">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm uppercase mb-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                Cartographie Rapide
+              </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight tracking-tight mt-1">
+                Trouvez une pharmacie<br/>en un instant
+              </h2>
+<p class="font-body-md text-body-md text-outline mt-2 leading-relaxed">
+                Toutes les officines de Douala, Yaoundé et du Cameroun référencées et géolocalisées avec précision.
+              </p>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="w-full shrink-0 flex flex-col items-center">
+<!-- Isometric 3D Map Vector Illustration 2 (Night & Guard Duty Mode) -->
+<div class="w-full h-56 relative rounded-lg bg-surface-container-low overflow-hidden flex items-center justify-center p-4">
+<div class="absolute w-36 h-36 rounded-full bg-primary-container/20 blur-2xl -top-6 -left-6 pointer-events-none"></div>
+<svg class="w-full h-full max-w-[280px]" fill="none" viewbox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Ground Base -->
+<polygon fill="#d7dae0" points="140,25 260,85 140,175 20,115"></polygon>
+<polygon fill="#c3c8bc" points="20,115 140,175 140,188 20,128"></polygon>
+<polygon fill="#aed09d" points="260,85 140,175 140,188 260,98"></polygon>
+<!-- Main Crossroad Avenue -->
+<polygon fill="#ffffff" points="120,40 160,60 120,165 80,145"></polygon>
+<polygon fill="#ffffff" points="40,85 240,135 230,150 30,100"></polygon>
+<!-- Illuminated Guard Duty Complex -->
+<polygon fill="#436137" points="130,70 170,50 170,85 130,105"></polygon>
+<polygon fill="#314e27" points="170,50 195,62 195,97 170,85"></polygon>
+<polygon fill="#5b7a4e" points="130,70 170,50 195,62 155,82"></polygon>
+<!-- Glowing Cross On Facade -->
+<g transform="translate(148, 80)">
+<rect fill="#caf208" height="12" width="4" x="-2" y="-6"></rect>
+<rect fill="#caf208" height="4" width="12" x="-6" y="-2"></rect>
+</g>
+<!-- Distant Closed Pharmacy (Darkened) -->
+<polygon fill="#e0e3e8" points="70,100 95,88 95,108 70,120"></polygon>
+<polygon fill="#c3c8bc" points="95,88 115,98 115,118 95,108"></polygon>
+<polygon fill="#ebeef4" points="70,100 95,88 115,98 90,110"></polygon>
+<!-- Pulsing Route to On-Duty Hub -->
+<path d="M50,135 C90,140 100,120 145,102" fill="none" stroke="#caf208" stroke-dasharray="3 5" stroke-linecap="round" stroke-width="4.5"></path>
+<!-- Floating Duty Badge -->
+<g transform="translate(155, 30)">
+<rect fill="#314e27" height="22" rx="11" width="70" x="-35" y="-12"></rect>
+<circle cx="-24" cy="-1" fill="#caf208" r="3.5"></circle>
+<text fill="#ffffff" font-family="Inter" font-size="9" font-weight="700" letter-spacing="0.04em" text-anchor="middle" x="5" y="3">DE GARDE</text>
+</g>
+</svg>
+</div>
+<!-- Content Details Slide 2 -->
+<div class="w-full mt-space-md text-left">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm uppercase mb-space-xs">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+                Disponibilité 24/7
+              </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight tracking-tight mt-1">
+                Voyez celles qui<br/>sont de garde
+              </h2>
+<p class="font-body-md text-body-md text-outline mt-2 leading-relaxed">
+                Disponibilités nocturnes, dimanches et jours fériés mises à jour en direct chaque semaine avec le Conseil de l'Ordre.
+              </p>
+</div>
+</div>
+<!-- Slide 3 -->
+<div class="w-full shrink-0 flex flex-col items-center">
+<!-- Isometric 3D Map Vector Illustration 3 (Direct Turn-by-Turn Route) -->
+<div class="w-full h-56 relative rounded-lg bg-surface-container-low overflow-hidden flex items-center justify-center p-4">
+<div class="absolute w-40 h-40 rounded-full bg-secondary-container/20 blur-3xl -bottom-8 -right-8 pointer-events-none"></div>
+<svg class="w-full h-full max-w-[280px]" fill="none" viewbox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Ground Base -->
+<polygon fill="#e0e3e8" points="140,20 265,82 140,178 15,116"></polygon>
+<polygon fill="#d7dae0" points="15,116 140,178 140,190 15,128"></polygon>
+<polygon fill="#c3c8bc" points="265,82 140,178 140,190 265,94"></polygon>
+<!-- Wide Road Network -->
+<path d="M45,125 L140,155 L235,90" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"></path>
+<path d="M140,155 L140,65" stroke="#FFFFFF" stroke-linecap="round" stroke-width="12"></path>
+<!-- Neon Lime Real-Time Navigation Polyline -->
+<path d="M55,123 L136,150 L136,75" fill="none" stroke="#181c20" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+<path d="M55,123 L136,150 L136,75" fill="none" stroke="#caf208" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<!-- Destination Portal / Entrance -->
+<polygon fill="#5b7a4e" points="120,65 145,52 145,77 120,90"></polygon>
+<polygon fill="#436137" points="145,52 165,62 165,87 145,77"></polygon>
+<polygon fill="#aed09d" points="120,65 145,52 165,62 140,75"></polygon>
+<!-- Pinpoint Finish Marker -->
+<g transform="translate(145, 38)">
+<circle cx="0" cy="0" fill="#caf208" r="14"></circle>
+<circle cx="0" cy="0" fill="#caf208" fill-opacity="0.25" r="18"></circle>
+<path d="M-4,-2 L0,-6 L4,-2 M0,-6 L0,6" stroke="#181c20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</g>
+<!-- Floating Distance Pill In-Flight -->
+<g transform="translate(75, 102)">
+<rect fill="#181c20" height="22" rx="11" width="60" x="-30" y="-12"></rect>
+<text fill="#ffffff" font-family="Inter" font-size="9.5" font-weight="600" text-anchor="middle" x="0" y="3">350 m • 3 min</text>
+</g>
+</svg>
+</div>
+<!-- Content Details Slide 3 -->
+<div class="w-full mt-space-md text-left">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm uppercase mb-space-xs">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">near_me</span>
+                Guidage GPS Actif
+              </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight tracking-tight mt-1">
+                Guidé jusqu'à la porte,<br/>en temps réel
+              </h2>
+<p class="font-body-md text-body-md text-outline mt-2 leading-relaxed">
+                Navigation piétonne et routière ultra-précise avec appel d'urgence direct vers le pharmacien.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination Indicators: 3 Soft Horizontal Bars -->
+<div class="flex items-center justify-center gap-2 py-2">
+<button aria-label="Étape 1" class="h-1.5 rounded-full transition-all duration-300 w-8 bg-primary-container" id="dot0" onclick="goToStep(0)"></button>
+<button aria-label="Étape 2" class="h-1.5 rounded-full transition-all duration-300 w-3 bg-surface-container-high" id="dot1" onclick="goToStep(1)"></button>
+<button aria-label="Étape 3" class="h-1.5 rounded-full transition-all duration-300 w-3 bg-surface-container-high" id="dot2" onclick="goToStep(2)"></button>
+</div>
+<!-- Bottom Action Row -->
+<div class="flex items-center gap-space-md mt-space-sm pt-space-xs">
+<!-- Circular Back Button (48px) -->
+<button aria-label="Précédent" class="w-12 h-12 shrink-0 rounded-full bg-surface-container-low text-on-surface flex items-center justify-center active:scale-95 transition-all shadow-sm opacity-40 cursor-not-allowed" disabled="" id="backBtn" onclick="prevStep()">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<!-- Primary Full-Width Pill Action Button -->
+<button class="flex-1 h-14 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-all" id="nextBtn" onclick="nextStep()">
+<span id="nextBtnText">Suivant</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Variant Preview Tabs (Allows reviewing all 3 screens at a glance) -->
+<div class="w-full px-margin mt-space-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Aperçu rapide des 3 étapes</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed bg-on-surface px-2 py-0.5 rounded-full">Interactif</span>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low p-1.5 rounded-full">
+<button class="py-2 px-3 rounded-full text-center font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-on-surface shadow-sm" id="tab0" onclick="goToStep(0)">
+        1. Trouver
+      </button>
+<button class="py-2 px-3 rounded-full text-center font-label-sm text-label-sm font-semibold transition-all text-outline hover:text-on-surface" id="tab1" onclick="goToStep(1)">
+        2. De Garde
+      </button>
+<button class="py-2 px-3 rounded-full text-center font-label-sm text-label-sm font-semibold transition-all text-outline hover:text-on-surface" id="tab2" onclick="goToStep(2)">
+        3. Guidage
+      </button>
+</div>
+</div>
+</div>
+<script>
+  let currentStep = 0;
+  const totalSteps = 3;
+
+  function updateUI() {
+    const track = document.getElementById('slideTrack');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtnText = document.getElementById('nextBtnText');
+    const skipBtn = document.getElementById('skipBtn');
+
+    // Slide carousel
+    track.style.transform = `translateX(-${currentStep * 100}%)`;
+
+    // Indicators
+    for (let i = 0; i < totalSteps; i++) {
+      const dot = document.getElementById(`dot${i}`);
+      const tab = document.getElementById(`tab${i}`);
+
+      if (i === currentStep) {
+        dot.className = "h-1.5 rounded-full transition-all duration-300 w-8 bg-primary-container";
+        tab.className = "py-2 px-3 rounded-full text-center font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-on-surface shadow-sm";
+      } else {
+        dot.className = "h-1.5 rounded-full transition-all duration-300 w-3 bg-surface-container-high";
+        tab.className = "py-2 px-3 rounded-full text-center font-label-sm text-label-sm font-semibold transition-all text-outline hover:text-on-surface";
+      }
+    }
+
+    // Back button state
+    if (currentStep === 0) {
+      backBtn.disabled = true;
+      backBtn.classList.add('opacity-40', 'cursor-not-allowed');
+      backBtn.classList.remove('hover:bg-surface-variant');
+    } else {
+      backBtn.disabled = false;
+      backBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      backBtn.classList.add('hover:bg-surface-variant');
+    }
+
+    // Forward button label & Skip button
+    if (currentStep === totalSteps - 1) {
+      nextBtnText.innerText = 'Commencer';
+      skipBtn.style.opacity = '0';
+      skipBtn.style.pointerEvents = 'none';
+    } else {
+      nextBtnText.innerText = 'Suivant';
+      skipBtn.style.opacity = '1';
+      skipBtn.style.pointerEvents = 'auto';
+    }
+  }
+
+  function nextStep() {
+    if (currentStep < totalSteps - 1) {
+      currentStep++;
+      updateUI();
+    } else {
+      // Completed onboarding action
+      const btn = document.getElementById('nextBtn');
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">sync</span><span>Connexion...</span>`;
+      setTimeout(() => {
+        btn.innerHTML = `<span>Bienvenue</span><span class="material-symbols-outlined text-[18px]">check_circle</span>`;
+      }, 700);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      updateUI();
+    }
+  }
+
+  function goToStep(index) {
+    currentStep = index;
+    updateUI();
+  }
+
+  // Touch Swipe Gesture Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const slideArea = document.getElementById('slideTrack');
+
+  slideArea.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  slideArea.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      nextStep();
+    } else if (touchEndX - touchStartX > 50) {
+      prevStep();
+    }
+  }, { passive: true });
+</script></main></body></html>

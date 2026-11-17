@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pauldjeuda.github.io/locapharm/schema/pharmacy.schema.json",
+  "title": "Locapharm pharmacy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "lat", "lon", "source", "quality", "updated_at"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3 },
+    "name": { "type": "string", "minLength": 1 },
+    "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+    "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "street": { "type": "string" },
+        "neighbourhood": { "type": "string" },
+        "city": { "type": "string" },
+        "region": { "type": "string" }
+      }
+    },
+    "neighbourhood": { "type": "string" },
+    "city": { "type": "string" },
+    "region": { "type": "string" },
+    "phones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["number", "primary"],
+        "properties": {
+          "number": { "type": "string", "pattern": "^\\+237[0-9]{8,9}$" },
+          "primary": { "type": "boolean" }
+        }
+      }
+    },
+    "opening_hours": { "type": "string" },
+    "always_open": { "type": "boolean" },
+    "services": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "url", "fetched_at", "license"],
+      "properties": {
+        "id": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "fetched_at": { "type": "string", "format": "date-time" },
+        "license": { "type": "string" },
+        "official": { "type": "boolean" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "flags"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "flags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

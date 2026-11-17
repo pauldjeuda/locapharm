@@ -1,0 +1,118 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Semantic version without the v prefix (for example 0.1.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: release-${{ inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: build, sign, and publish APK
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Validate release version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "Version must use X.Y.Z without a v prefix" >&2
+            exit 1
+          fi
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists" >&2
+            exit 1
+          fi
+      - run: npm ci
+      - run: npm run build
+      - name: Build and sign APK
+        id: apk
+        working-directory: app
+        env:
+          VERSION: ${{ inputs.version }}
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          npx cap add android
+          npx cap sync android
+          cd android
+          if [[ -n "$ANDROID_KEYSTORE_BASE64" && -n "$ANDROID_KEYSTORE_PASSWORD" && -n "$ANDROID_KEY_ALIAS" && -n "$ANDROID_KEY_PASSWORD" ]]; then
+            ./gradlew --no-daemon assembleRelease
+            source_apk="app/build/outputs/apk/release/app-release-unsigned.apk"
+            [[ -f "$source_apk" ]] || source_apk="app/build/outputs/apk/release/app-release.apk"
+            printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/locapharm-release.jks"
+            build_tools="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
+            "$build_tools/zipalign" -p -f 4 "$source_apk" "$RUNNER_TEMP/locapharm-aligned.apk"
+            "$build_tools/apksigner" sign --ks "$RUNNER_TEMP/locapharm-release.jks" --ks-key-alias "$ANDROID_KEY_ALIAS" --ks-pass "pass:$ANDROID_KEYSTORE_PASSWORD" --key-pass "pass:$ANDROID_KEY_PASSWORD" --out "$RUNNER_TEMP/locapharm-signed.apk" "$RUNNER_TEMP/locapharm-aligned.apk"
+            "$build_tools/apksigner" verify --print-certs "$RUNNER_TEMP/locapharm-signed.apk"
+            cp "$RUNNER_TEMP/locapharm-signed.apk" "$RUNNER_TEMP/locapharm-v$VERSION.apk"
+            echo "signed=true" >> "$GITHUB_OUTPUT"
+          else
+            ./gradlew --no-daemon assembleDebug
+            cp app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/locapharm-v$VERSION.apk"
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+          fi
+          rm -f "$RUNNER_TEMP/locapharm-release.jks" "$RUNNER_TEMP/locapharm-aligned.apk" "$RUNNER_TEMP/locapharm-signed.apk"
+          sha256sum "$RUNNER_TEMP/locapharm-v$VERSION.apk" | tee "$RUNNER_TEMP/locapharm-v$VERSION.apk.sha256"
+      - name: Write release notes
+        env:
+          VERSION: ${{ inputs.version }}
+          SIGNED: ${{ steps.apk.outputs.signed }}
+        run: |
+          if [[ "$SIGNED" == "true" ]]; then
+            note="APK signé avec le keystore de production."
+          else
+            note="PRÉ-RELEASE DE TEST : APK signé en debug, non signé pour production. Il ne pourra pas mettre à jour une installation signée avec le keystore de production."
+          fi
+          printf '# Locapharm v%s\n\n%s\n\nCette version ne confirme pas la couverture des pharmacies ni des tours de garde. Appelez avant de vous déplacer.\n' "$VERSION" "$note" > "$RUNNER_TEMP/release-notes.md"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: Locapharm v${{ inputs.version }}
+          body_path: ${{ runner.temp }}/release-notes.md
+          files: |
+            ${{ runner.temp }}/locapharm-v${{ inputs.version }}.apk
+            ${{ runner.temp }}/locapharm-v${{ inputs.version }}.apk.sha256
+          prerelease: ${{ steps.apk.outputs.signed != 'true' }}
+      - name: Prepare Pages version manifest
+        env:
+          VERSION: ${{ inputs.version }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p site
+          node -e 'const [major, minor, patch] = process.env.VERSION.split(".").map(Number); const v = process.env.VERSION; const url = `${process.env.GITHUB_SERVER_URL}/${process.env.REPOSITORY}/releases/download/v${v}/locapharm-v${v}.apk`; require("node:fs").writeFileSync("site/version.json", JSON.stringify({version:v, versionCode:major*1000000+minor*1000+patch, url, sha256:require("node:fs").readFileSync(process.env.RUNNER_TEMP+`/locapharm-v${v}.apk.sha256`, "utf8").split(" ")[0], notes:`Locapharm v${v}`, minSupported:"0.1.0"}, null, 2)+"\n")'
+          test -f site/index.html || printf '<!doctype html><html lang="fr"><meta charset="utf-8"><title>Locapharm</title><h1>Locapharm</h1><p>Pharmacies du Cameroun.</p></html>' > site/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - id: pages
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pauldjeuda.github.io/locapharm/schema/manifest.schema.json",
+  "title": "Locapharm data manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "data_version",
+    "packs",
+    "emergency",
+    "app_min_version"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "data_version": { "type": "string" },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "cities",
+          "url",
+          "sha256",
+          "bytes",
+          "pharmacies_count",
+          "guards_updated_at"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "name": {
+            "type": "object",
+            "required": ["fr", "en"],
+            "properties": {
+              "fr": { "type": "string" },
+              "en": { "type": "string" }
+            }
+          },
+          "cities": { "type": "array", "items": { "type": "string" } },
+          "bbox": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": { "type": "number" }
+          },
+          "url": { "type": "string", "format": "uri" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "pharmacies_count": { "type": "integer", "minimum": 0 },
+          "guards_valid_until": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "guards_updated_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "emergency": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "number", "source_id"],
+        "properties": {
+          "label": { "type": "string" },
+          "number": { "type": "string" },
+          "source_id": { "type": "string" }
+        }
+      }
+    },
+    "app_min_version": { "type": "string" }
+  }
+}

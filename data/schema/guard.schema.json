@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pauldjeuda.github.io/locapharm/schema/guard.schema.json",
+  "title": "Locapharm duty schedule entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pharmacy_id",
+    "region",
+    "city",
+    "starts_at",
+    "ends_at",
+    "kind",
+    "source_id",
+    "confirmed_at",
+    "official"
+  ],
+  "properties": {
+    "pharmacy_id": { "type": "string" },
+    "region": { "type": "string" },
+    "city": { "type": "string" },
+    "starts_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "[+-][0-9]{2}:[0-9]{2}$"
+    },
+    "ends_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "[+-][0-9]{2}:[0-9]{2}$"
+    },
+    "kind": { "enum": ["night", "day", "24h", "weekend"] },
+    "source_id": { "type": "string" },
+    "confirmed_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "[+-][0-9]{2}:[0-9]{2}$"
+    },
+    "official": { "type": "boolean" }
+  }
+}

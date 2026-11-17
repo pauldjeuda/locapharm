@@ -1,0 +1,30 @@
+name: Propose a pharmacy or duty-data source
+description: Propose an authorized directory or duty schedule publisher
+title: "data: source proposal"
+labels: [data-source]
+body:
+  - type: input
+    id: publisher
+    attributes:
+      label: Publisher and contact
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public source URL
+    validations:
+      required: true
+  - type: textarea
+    id: permission
+    attributes:
+      label: Licence or written permission
+      description: Link permission terms or attach written authorization. Do not submit copied personal contact data.
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Regions/cities and update cadence
+    validations:
+      required: true

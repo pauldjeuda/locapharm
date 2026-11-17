@@ -1,0 +1,101 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/syne/700.css";
+@import "@fontsource/syne/800.css";
+
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "./theme/tokens.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: var(--lp-on-surface);
+  background: var(--lp-surface);
+  font-family: Inter, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-variant-numeric: tabular-nums;
+}
+
+.splash {
+  display: grid;
+  min-height: 100%;
+  place-content: center;
+  gap: 56px;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  background: radial-gradient(
+    ellipse at 50% 42%,
+    #5b7a4e 0%,
+    #3f5a36 52%,
+    #31492c 100%
+  );
+}
+
+.brand-lockup img {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.brand-lockup h1 {
+  margin: 0;
+  font:
+    800 clamp(36px, 10vw, 54px) / 1 Syne,
+    sans-serif;
+  letter-spacing: -0.065em;
+}
+
+.brand-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px 0 0;
+  color: #e8ffd9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.brand-caption span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c8f000;
+}
+
+.splash-note {
+  max-width: 270px;
+  margin: 0 auto;
+  color: rgb(255 255 255 / 78%);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

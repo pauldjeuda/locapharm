@@ -1,0 +1,30 @@
+{
+  "name": "locapharm",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "app",
+    "worker"
+  ],
+  "scripts": {
+    "lint": "npm run lint --workspace @locapharm/app && npm run lint --workspace @locapharm/worker",
+    "typecheck": "npm run typecheck --workspace @locapharm/app && npm run typecheck --workspace @locapharm/worker",
+    "build": "npm run build --workspace @locapharm/app",
+    "test:unit": "npm run test:unit --workspace @locapharm/app",
+    "test:worker": "npm run test --workspace @locapharm/worker",
+    "test:data": "node --test data/scripts/*.test.mjs",
+    "verify:no-fakes": "node scripts/verify-no-fakes.mjs",
+    "verify:data": "node scripts/verify-data.mjs",
+    "spike:osm": "node data/scripts/measure-osm.mjs",
+    "icons:build": "node scripts/generate-icon-sprite.mjs",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "eslint": "10.15.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.73.0"
+  }
+}

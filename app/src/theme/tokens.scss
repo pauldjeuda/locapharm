@@ -1,0 +1,45 @@
+:root {
+  --lp-primary: #436137;
+  --lp-primary-container: #5b7a4e;
+  --lp-secondary-container: #c7ef00;
+  --lp-brand-green: #3f5a36;
+  --lp-brand-sage: #5b7a4e;
+  --lp-brand-lime: #c8f000;
+  --lp-brand-ink: #0f1110;
+  --lp-surface: #f7f9ff;
+  --lp-surface-container: #ebeef4;
+  --lp-surface-map: #e9eaeb;
+  --lp-on-surface: #181c20;
+  --lp-on-surface-variant: #43483f;
+  --lp-success-dark: #3f5a36;
+  --lp-closed-surface: #e2e4e6;
+  --lp-closed-text: #5e656b;
+  --lp-card-radius: 28px;
+  --lp-sheet-radius: 32px;
+  --lp-screen-gutter: 20px;
+  --ion-color-primary: #436137;
+  --ion-color-primary-rgb: 67, 97, 55;
+  --ion-color-primary-contrast: #fff;
+  --ion-color-secondary: #c7ef00;
+  --ion-font-family: Inter, sans-serif;
+}
+
+.theme-dark {
+  --lp-brand-green: #aed09d;
+  --lp-brand-lime: #caf208;
+  --lp-brand-ink: #161b19;
+  --lp-surface: #161b19;
+  --lp-surface-container: #1f2522;
+  --lp-surface-map: #161b19;
+  --lp-on-surface: #fff;
+  --lp-on-surface-variant: #d7dae0;
+  --ion-background-color: #161b19;
+  --ion-text-color: #fff;
+  --ion-item-background: #1f2522;
+}
+
+@media (max-width: 380px) {
+  :root {
+    --lp-screen-gutter: 16px;
+  }
+}

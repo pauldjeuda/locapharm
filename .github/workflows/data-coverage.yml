@@ -1,0 +1,35 @@
+name: data-coverage
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  osm-coverage:
+    name: one-time Cameroon pharmacy coverage spike
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Query and summarize OSM pharmacies
+        run: |
+          npm run spike:osm | tee "$RUNNER_TEMP/osm-coverage.tsv"
+          {
+            echo '## OSM pharmacy coverage (mapped objects, not a completeness claim)'
+            echo
+            echo '```text'
+            cat "$RUNNER_TEMP/osm-coverage.tsv"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: osm-coverage-${{ github.run_id }}
+          path: ${{ runner.temp }}/osm-coverage.tsv
+          if-no-files-found: error

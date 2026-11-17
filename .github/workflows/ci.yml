@@ -1,0 +1,156 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "sprint/**", "feat/**", "fix/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: lint, types, data, and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check commit title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PUSH_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          message="$PR_TITLE"
+          if [ -z "$message" ]; then message="$PUSH_MESSAGE"; fi
+          printf '%s\n' "$message" | npx --no-install commitlint
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run verify:no-fakes
+      - run: npm run verify:data
+      - run: npm run test:unit
+      - run: npm run test:data
+      - run: npm run test:worker
+      - run: npm run format:check
+
+  web-build:
+    name: production web build
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v6
+        with:
+          name: locapharm-web
+          path: app/dist/locapharm/browser/
+          if-no-files-found: error
+
+  e2e-visual-a11y:
+    name: e2e, visual review, and axe
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e --workspace @locapharm/app
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: visual-review-splash
+          path: app/test-results/
+          if-no-files-found: warn
+
+  android-debug:
+    name: Android debug APK
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - run: npm ci
+      - run: npm run build
+      - name: Create Android project and build debug APK
+        working-directory: app
+        run: |
+          npx cap add android
+          npx cap sync android
+          cd android
+          ./gradlew --no-daemon assembleDebug
+      - uses: actions/upload-artifact@v6
+        with:
+          name: locapharm-debug-apk
+          path: app/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+  android-smoke:
+    name: Android emulator install smoke
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - run: npm ci
+      - run: npm run build
+      - name: Build, install, and launch on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          script: |
+            cd app
+            npx cap add android
+            npx cap sync android
+            cd android
+            ./gradlew --no-daemon assembleDebug
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            adb shell monkey -p cm.locapharm.app 1
+            adb shell pm path cm.locapharm.app
+
+  security:
+    name: dependency and repository checks
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: git diff --check

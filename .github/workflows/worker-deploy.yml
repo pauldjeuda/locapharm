@@ -1,0 +1,58 @@
+name: worker-deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      [
+        "worker/**",
+        "package.json",
+        "package-lock.json",
+        ".github/workflows/worker-deploy.yml",
+      ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:worker
+      - run: npm run typecheck --workspace @locapharm/worker
+
+  deploy:
+    if: (github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main') && vars.CLOUDFLARE_ENABLED == 'true'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Deploy Worker
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+      - name: Check deployed health endpoint
+        env:
+          WORKER_BASE_URL: ${{ vars.WORKER_BASE_URL }}
+        run: |
+          if [ -z "$WORKER_BASE_URL" ]; then
+            echo "Set repository Actions variable WORKER_BASE_URL to the deployed Worker URL." >&2
+            exit 1
+          fi
+          curl --fail --retry 5 --retry-delay 2 "$WORKER_BASE_URL/health"

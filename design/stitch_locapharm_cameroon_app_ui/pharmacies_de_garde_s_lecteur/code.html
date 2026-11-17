@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#c7ef00", "surface-dim": "#d7dae0", "surface-variant": "#e0e3e8", "on-primary-container": "#e8ffd9", "on-surface-variant": "#43483f", "on-secondary-fixed-variant": "#3e4c00", "on-secondary-container": "#576a00", "surface-container-high": "#e5e8ee", "inverse-primary": "#aed09d", "surface-bright": "#f7f9ff", "on-surface": "#181c20", "inverse-on-surface": "#eef1f6", "tertiary": "#45603b", "on-primary": "#ffffff", "error-container": "#ffdad6", "tertiary-container": "#5d7952", "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-fixed": "#062102", "on-secondary": "#ffffff", "secondary-fixed-dim": "#b1d500", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#314e27", "on-tertiary-fixed-variant": "#334d2b", "on-tertiary-container": "#e6ffd8", "tertiary-fixed": "#ccecbd", "primary-container": "#5b7a4e", "primary": "#436137", "secondary-fixed": "#caf208", "surface-container-highest": "#e0e3e8", "background": "#f7f9ff", "outline": "#73796e", "tertiary-fixed-dim": "#b0cfa2", "surface-container": "#ebeef4", "surface-container-low": "#f1f4f9", "on-error-container": "#93000a", "surface": "#f7f9ff", "on-tertiary-fixed": "#082104", "on-background": "#181c20", "inverse-surface": "#2d3135", "surface-tint": "#48663c", "outline-variant": "#c3c8bc", "secondary": "#536500", "on-secondary-fixed": "#171e00", "primary-fixed": "#c9edb7", "primary-fixed-dim": "#aed09d" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.25rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "data-metric": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Syne"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Syne"], "headline-md": ["Syne"], "headline-sm": ["Syne"], "headline-lg-mobile": ["Syne"], "body-md": ["Inter"], "headline-xl": ["Syne"] }, fontSize: { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "700" }], "data-metric": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>body{min-height:max(884px,100dvh);}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen relative antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Locapharm Logo Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCptTHDOoc-zdUEH4K4IpXENKvMY48spvC_qbXAHyKttpkSLsnL11kg417dqxUivJHJNKrEakLNVGAqjKvVeYgklT26uKtkNXdTbP6k0t80dkxr1j0P8rK2BPY0sji71c9TkW0w91b9dWSIkBUe67GlhDw8003J6ufTrzNmSXa7_jP0-Ya74H0WzH6mLwgA_awOxnCdRTHbIYWc2VmDCu8yryQQBfzk7wnCy-04vXyc"/><span class="font-headline-md text-headline-md text-on-surface tracking-tight">Locapharm</span></div><h1 class="sr-only">Gardes</h1><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-on-surface-variant hidden sm:inline">Cameroun</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-surface"><div class="flex flex-col w-full relative">
+<!-- Interactive View Switcher Bar (Demo controls) -->
+<div class="px-margin pt-space-xs pb-space-sm flex items-center justify-between gap-space-xs overflow-x-auto no-scrollbar">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider shrink-0 mr-1">Aperçu :</span>
+<div class="flex items-center gap-1.5 shrink-0">
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-inverse-surface text-surface-bright shadow-sm transition-all" id="btn-mode-normal" onclick="setScreenState('normal')">Vue Normale</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" id="btn-mode-nodata" onclick="setScreenState('nodata')">Sans données</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all" id="btn-mode-stale" onclick="setScreenState('stale')">Données anciennes</button>
+<button class="px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all flex items-center gap-1" id="btn-mode-sheet" onclick="openCitySheet()">
+<span>Sélecteur Ville</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+</button>
+</div>
+</div>
+<!-- Screen Header & Title -->
+<div class="px-margin pt-space-xs pb-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-semibold">Service d'urgence 24/7</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span id="header-stat-label">18 ouvertes cette nuit</span>
+</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Pharmacies de garde</h2>
+</div>
+<!-- Horizontal Control Row -->
+<div class="px-margin pb-space-md flex items-center justify-between gap-space-sm">
+<!-- City Selector Pill -->
+<button class="flex items-center gap-space-xs bg-surface-container-lowest px-4 py-2.5 rounded-full shadow-[0px_4px_20px_rgba(18,22,26,0.06)] active:scale-95 transition-all text-on-surface" onclick="openCitySheet()">
+<span class="material-symbols-outlined text-[18px] text-primary">location_on</span>
+<span class="font-label-lg text-label-lg" id="active-city-display">Yaoundé</span>
+<span class="material-symbols-outlined text-[18px] text-outline">expand_more</span>
+</button>
+<!-- Date Filters -->
+<div class="flex items-center gap-1.5 bg-surface-container p-1 rounded-full">
+<button class="px-3.5 py-1.5 rounded-full bg-inverse-surface text-surface-bright font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5" id="chip-today" onclick="selectFilter('today')">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+<span>Aujourd'hui</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all" id="chip-week" onclick="selectFilter('week')">
+<span>Cette semaine</span>
+</button>
+</div>
+</div>
+<!-- Freshness & Stale Alert Banners -->
+<div class="px-margin pb-space-md flex flex-col gap-space-xs">
+<!-- Freshness Banner (Default state) -->
+<div class="flex items-center justify-between px-4 py-3 rounded-2xl bg-surface-container-lowest shadow-[0px_2px_12px_rgba(18,22,26,0.03)]" id="banner-fresh">
+<div class="flex items-center gap-space-sm">
+<div class="relative flex items-center justify-center w-5 h-5">
+<span class="absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75 animate-ping"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary-fixed"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Liste officielle mise à jour le <strong class="text-on-surface font-semibold">14 novembre</strong>
+</p>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+</div>
+<!-- Données Anciennes Alert Banner (Stale State) -->
+<div class="hidden flex items-start gap-space-sm p-4 rounded-2xl bg-error-container text-on-error-container" id="banner-stale">
+<span class="material-symbols-outlined text-[20px] shrink-0 text-error">warning</span>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg text-on-error-container">Liste de garde non synchronisée</h4>
+<p class="font-body-sm text-body-sm text-on-error-container/80 mt-0.5">⚠️ Les tours de garde ont expiré le 7 novembre. Veuillez appeler l'officine pour confirmer la permanence avant de vous déplacer.</p>
+</div>
+</div>
+</div>
+<!-- State 1 & 3: Normal Pharmacy Cards List -->
+<div class="px-margin flex flex-col gap-space-md" id="pharmacy-list-container">
+<!-- Card 1: Pharmacie du Soleil -->
+<article class="bg-surface-container-lowest rounded-[28px] p-5 shadow-[0px_4px_24px_rgba(18,22,26,0.05)] flex flex-col gap-space-md transition-transform active:scale-[0.99]">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm tracking-wider">DE GARDE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Permanence nuit</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight truncate mt-1">Pharmacie du Soleil</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Akwa, face Direction Générale MTN</p>
+</div>
+<div class="shrink-0 w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[22px]">emergency</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-surface-variant/30">
+<div class="flex flex-col">
+<span class="font-data-metric text-data-metric text-on-surface tabular-nums">350 m <span class="text-on-surface-variant font-normal text-body-sm">· 5 min</span></span>
+<span class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+            Jusqu'au 23 nov. 08:00
+          </span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-2 shrink-0">
+<a aria-label="Appeler Pharmacie du Soleil" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm active:bg-surface-variant transition-colors" href="tel:+237699000111">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire vers Pharmacie du Soleil" class="w-11 h-11 rounded-full bg-inverse-surface flex items-center justify-center text-surface-bright shadow-sm active:bg-on-surface transition-colors">
+<span class="font-headline-sm text-headline-sm leading-none">↗</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Pharmacie Mvog-Mbi -->
+<article class="bg-surface-container-lowest rounded-[28px] p-5 shadow-[0px_4px_24px_rgba(18,22,26,0.05)] flex flex-col gap-space-md transition-transform active:scale-[0.99]">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm tracking-wider">DE GARDE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">24h / 24</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight truncate mt-1">Pharmacie Mvog-Mbi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Carrefour Mvog-Mbi, près Total Énergies</p>
+</div>
+<div class="shrink-0 w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[22px]">medical_services</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-surface-variant/30">
+<div class="flex flex-col">
+<span class="font-data-metric text-data-metric text-on-surface tabular-nums">1,2 km <span class="text-on-surface-variant font-normal text-body-sm">· 14 min</span></span>
+<span class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+            Jusqu'au 23 nov. 08:00
+          </span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<a aria-label="Appeler Pharmacie Mvog-Mbi" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm active:bg-surface-variant transition-colors" href="tel:+237677222333">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire vers Pharmacie Mvog-Mbi" class="w-11 h-11 rounded-full bg-inverse-surface flex items-center justify-center text-surface-bright shadow-sm active:bg-on-surface transition-colors">
+<span class="font-headline-sm text-headline-sm leading-none">↗</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Nouvelle Pharmacie Bastos -->
+<article class="bg-surface-container-lowest rounded-[28px] p-5 shadow-[0px_4px_24px_rgba(18,22,26,0.05)] flex flex-col gap-space-md transition-transform active:scale-[0.99]">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm tracking-wider">DE GARDE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ouvert</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight truncate mt-1">Nouvelle Pharmacie Bastos</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rue des Ambassades, Bastos</p>
+</div>
+<div class="shrink-0 w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-surface-variant/30">
+<div class="flex flex-col">
+<span class="font-data-metric text-data-metric text-on-surface tabular-nums">2,4 km <span class="text-on-surface-variant font-normal text-body-sm">· 28 min</span></span>
+<span class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+            Jusqu'au 20 nov. 08:00
+          </span>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<a aria-label="Appeler Nouvelle Pharmacie Bastos" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm active:bg-surface-variant transition-colors" href="tel:+237699444555">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire vers Nouvelle Pharmacie Bastos" class="w-11 h-11 rounded-full bg-inverse-surface flex items-center justify-center text-surface-bright shadow-sm active:bg-on-surface transition-colors">
+<span class="font-headline-sm text-headline-sm leading-none">↗</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- State 2: Ville sans données (Empty / Fallback State) -->
+<div class="hidden px-margin flex-col gap-space-lg" id="state-nodata-container">
+<div class="bg-surface-container-lowest rounded-[32px] p-6 text-center flex flex-col items-center gap-space-md shadow-[0px_4px_24px_rgba(18,22,26,0.04)]">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[32px] text-tertiary">edit_calendar</span>
+</div>
+<div class="flex flex-col gap-1 max-w-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Pas encore de liste de garde</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Aucun planning officiel de garde n'a été publié pour cette ville cette semaine. Voici les pharmacies de proximité ouvertes.
+        </p>
+</div>
+<button class="w-full h-14 rounded-full bg-inverse-surface text-surface-bright font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-98 transition-transform shadow-md">
+<span>Contribuer à la liste</span>
+<span class="font-headline-sm text-headline-sm">↗</span>
+</button>
+</div>
+<!-- Proximity fallback list -->
+<div class="flex flex-col gap-space-sm">
+<h4 class="font-label-lg text-label-lg text-on-surface px-1">Pharmacies proches toujours ouvertes</h4>
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Pharmacie Centrale de l'Ouest</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Marché A · 450 m · Ferme à 22h</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+</div>
+</div>
+</div>
+<!-- City Picker Bottom Sheet (Modal Overlay) -->
+<div class="hidden fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm transition-opacity opacity-0 flex flex-col justify-end" id="city-sheet-scrim">
+<!-- Click outside to dismiss -->
+<div class="flex-1 w-full" onclick="closeCitySheet()"></div>
+<!-- Sheet Panel -->
+<div class="w-full bg-surface-container-lowest rounded-t-[32px] p-margin pb-32 flex flex-col gap-space-md shadow-[0px_-8px_32px_rgba(18,22,26,0.12)] max-h-[751px] transform translate-y-full transition-transform duration-300 ease-out" id="city-sheet-panel">
+<!-- Handle -->
+<div class="w-12 h-1.5 rounded-full bg-surface-variant mx-auto -mt-2 mb-1"></div>
+<!-- Header & Search -->
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Choisir une ville</h3>
+<button class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant active:bg-surface-variant" onclick="closeCitySheet()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- City Search Bar -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline text-[20px]">search</span>
+<input class="w-full h-12 pl-11 pr-4 bg-surface-container rounded-full font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20" id="city-search-input" oninput="filterCityList(this.value)" placeholder="Rechercher une ville, région..." type="text"/>
+</div>
+<!-- City List (Scrollable) -->
+<div class="flex flex-col gap-1 overflow-y-auto max-h-[371px] pr-1" id="city-items-list">
+<!-- Yaoundé (Active) -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-low hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Yaoundé', 212)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold city-name">Yaoundé</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">212 pharmacies enregistrées</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</button>
+<!-- Douala -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Douala', 248)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Douala</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">248 pharmacies enregistrées</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Littoral</span>
+</button>
+<!-- Bafoussam -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Bafoussam', 74)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Bafoussam</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">74 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Ouest</span>
+</button>
+<!-- Garoua -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Garoua', 42)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Garoua</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">42 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Nord</span>
+</button>
+<!-- Bamenda -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Bamenda', 56)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Bamenda</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">56 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Nord-Ouest</span>
+</button>
+<!-- Maroua -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Maroua', 38)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Maroua</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">38 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Extrême-Nord</span>
+</button>
+<!-- Ngaoundéré -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Ngaoundéré', 31)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Ngaoundéré</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">31 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Adamaoua</span>
+</button>
+<!-- Bertoua -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Bertoua', 25)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Bertoua</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">25 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Est</span>
+</button>
+<!-- Ebolowa -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Ebolowa', 19)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Ebolowa</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">19 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Sud</span>
+</button>
+<!-- Kribi -->
+<button class="city-row w-full flex items-center justify-between p-3.5 rounded-2xl hover:bg-surface-container active:scale-[0.99] transition-all text-left" onclick="selectCity('Kribi', 22)">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">location_city</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface city-name">Kribi</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">22 pharmacies</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Sud</span>
+</button>
+</div>
+<!-- GPS Locate Button -->
+<button class="w-full h-14 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 active:bg-surface-variant transition-colors mt-1" onclick="locateUserPosition()">
+<span class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+</span>
+<span>Utiliser ma position actuelle</span>
+</button>
+</div>
+</div>
+<script>
+    // State Switcher logic for interactive test
+    function setScreenState(state) {
+      const normalList = document.getElementById('pharmacy-list-container');
+      const nodataView = document.getElementById('state-nodata-container');
+      const bannerFresh = document.getElementById('banner-fresh');
+      const bannerStale = document.getElementById('banner-stale');
+      const statLabel = document.getElementById('header-stat-label');
+
+      // Update button styles
+      ['normal', 'nodata', 'stale'].forEach(s => {
+        const btn = document.getElementById('btn-mode-' + s);
+        if (btn) {
+          if (s === state) {
+            btn.className = "px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-inverse-surface text-surface-bright shadow-sm transition-all";
+          } else {
+            btn.className = "px-3 py-1.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high transition-all";
+          }
+        }
+      });
+
+      if (state === 'normal') {
+        normalList.classList.remove('hidden');
+        nodataView.classList.add('hidden');
+        bannerFresh.classList.remove('hidden');
+        bannerStale.classList.add('hidden');
+        statLabel.textContent = "18 ouvertes cette nuit";
+      } else if (state === 'nodata') {
+        normalList.classList.add('hidden');
+        nodataView.classList.remove('hidden');
+        bannerFresh.classList.add('hidden');
+        bannerStale.classList.add('hidden');
+        statLabel.textContent = "Aucune garde";
+      } else if (state === 'stale') {
+        normalList.classList.remove('hidden');
+        nodataView.classList.add('hidden');
+        bannerFresh.classList.add('hidden');
+        bannerStale.classList.remove('hidden');
+        statLabel.textContent = "Vérification requise";
+      }
+    }
+
+    // Filter Buttons Toggle
+    function selectFilter(filter) {
+      const btnToday = document.getElementById('chip-today');
+      const btnWeek = document.getElementById('chip-week');
+      if (filter === 'today') {
+        btnToday.className = "px-3.5 py-1.5 rounded-full bg-inverse-surface text-surface-bright font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5";
+        btnToday.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span><span>Aujourd\'hui</span>';
+        btnWeek.className = "px-3.5 py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all";
+        btnWeek.innerHTML = '<span>Cette semaine</span>';
+      } else {
+        btnWeek.className = "px-3.5 py-1.5 rounded-full bg-inverse-surface text-surface-bright font-label-md text-label-md shadow-sm transition-all flex items-center gap-1.5";
+        btnWeek.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span><span>Cette semaine</span>';
+        btnToday.className = "px-3.5 py-1.5 rounded-full text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all";
+        btnToday.innerHTML = '<span>Aujourd\'hui</span>';
+      }
+    }
+
+    // Bottom sheet controls
+    function openCitySheet() {
+      const scrim = document.getElementById('city-sheet-scrim');
+      const panel = document.getElementById('city-sheet-panel');
+      scrim.classList.remove('hidden');
+      setTimeout(() => {
+        scrim.classList.remove('opacity-0');
+        panel.classList.remove('translate-y-full');
+      }, 10);
+    }
+
+    function closeCitySheet() {
+      const scrim = document.getElementById('city-sheet-scrim');
+      const panel = document.getElementById('city-sheet-panel');
+      panel.classList.add('translate-y-full');
+      scrim.classList.add('opacity-0');
+      setTimeout(() => {
+        scrim.classList.add('hidden');
+      }, 300);
+    }
+
+    function selectCity(cityName, count) {
+      document.getElementById('active-city-display').textContent = cityName;
+      closeCitySheet();
+      // If user picks a smaller town, trigger sample nodata demonstration if desired
+      if (cityName === 'Garoua' || cityName === 'Bertoua') {
+        setScreenState('nodata');
+      } else {
+        setScreenState('normal');
+      }
+    }
+
+    function locateUserPosition() {
+      document.getElementById('active-city-display').textContent = "Yaoundé (GPS)";
+      closeCitySheet();
+      setScreenState('normal');
+    }
+
+    function filterCityList(query) {
+      const rows = document.querySelectorAll('.city-row');
+      const q = query.toLowerCase().trim();
+      rows.forEach(row => {
+        const text = row.querySelector('.city-name').textContent.toLowerCase();
+        if (text.includes(q)) {
+          row.style.display = 'flex';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Set Bottom Bar "Gardes" to active state in parent shell
+    (function activateGardesNav() {
+      const gardesTab = document.querySelector('nav a[data-path="gardes"]');
+      if (gardesTab) {
+        document.querySelectorAll('nav a').forEach(a => {
+          a.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-[0_4px_16px_rgba(0,0,0,0.18)]');
+          a.classList.add('text-surface-bright/70');
+        });
+        gardesTab.classList.remove('text-surface-bright/70');
+        gardesTab.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-[0_4px_16px_rgba(0,0,0,0.18)]');
+      }
+    })();
+  </script>
+</div></main><div class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none flex justify-center"><nav class="pointer-events-auto mb-4 mx-space-md bg-inverse-surface rounded-full p-1.5 flex items-center gap-1 shadow-[0_12px_36px_rgba(0,0,0,0.25)]" data-active-classes="bg-surface-container-lowest text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.18)]"><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="carte" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-md text-label-md">Carte</span></a><a aria-current="page" class="flex items-center gap-space-xs px-3.5 py-2 rounded-full transition-all min-h-[44px] bg-surface-container-lowest text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.18)]" data-path="gardes" href="#"><span class="material-symbols-outlined text-[20px]">emergency</span><span class="font-label-md text-label-md">Gardes</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="favoris" href="#"><span class="material-symbols-outlined text-[20px]">bookmark</span><span class="font-label-md text-label-md">Favoris</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="reglages" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-md text-label-md">Réglages</span></a></nav></div></body></html>

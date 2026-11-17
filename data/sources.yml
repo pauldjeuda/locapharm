@@ -1,0 +1,70 @@
+sources:
+  - id: osm-cameroon
+    name: OpenStreetMap Cameroon
+    url: https://www.openstreetmap.org/copyright
+    status: permitted
+    official: false
+    license: ODbL-1.0
+    contact: https://www.openstreetmap.org/fixthemap
+    last_checked: 2026-11-17
+    notes: Pharmacy directory source; attribution/share-alike required; country coverage query pending.
+
+  - id: openfreemap-liberty
+    name: OpenFreeMap Liberty vector style
+    url: https://tiles.openfreemap.org/styles/liberty
+    status: permitted
+    official: false
+    license: Provider terms; OSM-derived map data under ODbL
+    contact: https://openfreemap.org/tos/
+    last_checked: 2026-11-17
+    notes: Style endpoint returned HTTP 200; service is as-is; observe the offline-download limits in its terms.
+
+  - id: mboapharma-guards
+    name: MboaPHARMA duty schedule pages
+    url: https://mboapharma.cm/pharmacies-de-garde-du-jour/
+    status: candidate
+    official: false
+    license: unknown
+    contact: https://mboapharma.cm/
+    last_checked: 2026-11-17
+    notes: Dated city lists surfaced; no redistribution permission or provenance verified. Do not ingest.
+
+  - id: annuaire-medical-guards
+    name: Annuaire Médical du Cameroun duty schedules
+    url: https://www.annuaire-medical.cm/fr/pharmacies-de-garde
+    status: candidate
+    official: false
+    license: unknown
+    contact: https://www.annuaire-medical.cm/fr/
+    last_checked: 2026-11-17
+    notes: City schedule directory surfaced; terms, update cadence, and source provenance not verified. Do not ingest.
+
+  - id: pharma-dream-guards
+    name: Pharma Dream schedule directory
+    url: https://pharmacy.pharmadream.io/pharmacies-de-garde
+    status: rejected
+    official: false
+    license: unknown
+    contact: https://pharmacy.pharmadream.io/
+    last_checked: 2026-11-17
+    notes: Current terms prohibit reproduction/distribution of platform components without prior written consent; page showed a 2027 schedule during a 2026-11-17 check. Do not ingest unless written permission and a current confirmed schedule are received.
+
+  - id: onpc
+    name: Ordre National des Pharmaciens du Cameroun
+    url: https://web.onpc.cm/tableau_de_lordre
+    status: candidate
+    official: true
+    license: unknown
+    contact: https://ordrepharmacien.cm/
+    last_checked: 2026-11-17
+    notes: Authority/contact candidate; a current public duty schedule was not found. No roster ingested.
+
+  - id: dpml-minsante
+    name: Direction de la Pharmacie, du Médicament et des Laboratoires
+    url: https://dpml.cm/fr/
+    status: candidate
+    official: true
+    license: unknown
+    contact: https://www.minsante.cm/
+    last_checked: 2026-11-17
+    notes: Official regulatory publisher candidate; a current city-level duty roster was not found. No roster ingested.

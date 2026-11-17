@@ -1,0 +1,148 @@
+{
+  "source": "design/stitch_locapharm_cameroon_app_ui/locapharm_cameroun/DESIGN.md and 17 screen/code.html pairs",
+  "measuredAt": "2026-11-17",
+  "palette": {
+    "material": {
+      "primary": "#436137",
+      "primaryContainer": "#5B7A4E",
+      "onPrimary": "#FFFFFF",
+      "onPrimaryContainer": "#E8FFD9",
+      "inversePrimary": "#AED09D",
+      "secondary": "#536500",
+      "secondaryContainer": "#C7EF00",
+      "onSecondary": "#FFFFFF",
+      "onSecondaryContainer": "#576A00",
+      "secondaryFixed": "#CAF208",
+      "secondaryFixedDim": "#B1D500",
+      "onSecondaryFixed": "#171E00",
+      "onSecondaryFixedVariant": "#3E4C00",
+      "tertiary": "#45603B",
+      "onTertiary": "#FFFFFF",
+      "tertiaryContainer": "#5D7952",
+      "onTertiaryContainer": "#E6FFD8",
+      "tertiaryFixed": "#CCECBD",
+      "tertiaryFixedDim": "#B0CFA2",
+      "onTertiaryFixed": "#082104",
+      "onTertiaryFixedVariant": "#334D2B",
+      "surface": "#F7F9FF",
+      "surfaceDim": "#D7DAE0",
+      "surfaceBright": "#F7F9FF",
+      "surfaceContainerLowest": "#FFFFFF",
+      "surfaceContainerLow": "#F1F4F9",
+      "surfaceContainer": "#EBEEF4",
+      "surfaceContainerHigh": "#E5E8EE",
+      "surfaceContainerHighest": "#E0E3E8",
+      "surfaceTint": "#48663C",
+      "surfaceVariant": "#E0E3E8",
+      "background": "#F7F9FF",
+      "onBackground": "#181C20",
+      "onSurface": "#181C20",
+      "onSurfaceVariant": "#43483F",
+      "inverseSurface": "#2D3135",
+      "inverseOnSurface": "#EEF1F6",
+      "outline": "#73796E",
+      "outlineVariant": "#C3C8BC",
+      "error": "#BA1A1A",
+      "onError": "#FFFFFF",
+      "errorContainer": "#FFDAD6",
+      "onErrorContainer": "#93000A",
+      "primaryFixed": "#C9EDB7",
+      "primaryFixedDim": "#AED09D",
+      "onPrimaryFixed": "#062102",
+      "onPrimaryFixedVariant": "#314E27"
+    },
+    "brand": {
+      "deepGreen": "#3F5A36",
+      "sage": "#5B7A4E",
+      "lime": "#C8F000",
+      "ink": "#0F1110",
+      "inkContent": "#12161A",
+      "mutedText": "#5E656B",
+      "disabled": "#9AA0A6",
+      "pressedSurface": "#F0F2F1",
+      "surfaceWhite": "#FFFFFF",
+      "mapLight": "#E9EAEB",
+      "mapBuildingLight": "#DFE2E5",
+      "closedSurface": "#E2E4E6",
+      "closedText": "#5E656B"
+    },
+    "dark": {
+      "map": "#161B19",
+      "surface": "#1F2522",
+      "surfaceRaised": "#1D2220",
+      "surfaceHigh": "#29302C",
+      "text": "#FFFFFF",
+      "textMuted": "#D7DAE0",
+      "lime": "#CAF208",
+      "sage": "#AED09D"
+    }
+  },
+  "typography": {
+    "display": "Syne",
+    "body": "Inter",
+    "weights": { "body": [400, 500, 600, 700], "display": [700, 800] },
+    "tabularMetrics": true,
+    "scale": {
+      "headlineXL": "Syne 40px/48px 800 -0.03em",
+      "headlineXLMobile": "Syne 30px/36px 800 -0.02em",
+      "headlineLG": "Syne 32px/38px 700 -0.02em",
+      "headlineLGMobile": "Syne 24px/30px 700 -0.02em",
+      "headlineMD": "Syne 20px/26px 700 -0.01em",
+      "headlineSM": "Syne 16px/22px 700 0em",
+      "bodyLG": "Inter 16px/24px 400 -0.01em",
+      "bodyMD": "Inter 14px/20px 400 0em",
+      "bodySM": "Inter 12px/16px 400 0.01em",
+      "labelLG": "14px/18px 600",
+      "labelMD": "12px/16px 600",
+      "labelSM": "10px/12px 700 +0.06em",
+      "dataMetric": "18px/22px 600"
+    }
+  },
+  "shape": {
+    "pill": "9999px",
+    "pharmacyCard": "28px",
+    "bottomSheetTop": "32px",
+    "bottomSheetBottom": "0px",
+    "floatingButton": "44px",
+    "searchFieldHeight": "56px"
+  },
+  "spacingPx": {
+    "screen": 20,
+    "screenSmall": 16,
+    "gutter": 16,
+    "scale": [4, 8, 16, 24, 32]
+  },
+  "status": {
+    "onDuty": { "background": "#3F5A36", "foreground": "#FFFFFF" },
+    "open": { "background": "#0F1110", "foreground": "#C8F000" },
+    "closed": { "background": "#E2E4E6", "foreground": "#5E656B" },
+    "unknown": {
+      "background": "#FFFFFF",
+      "foreground": "#5E656B",
+      "border": "#C3C8BC"
+    }
+  },
+  "map": {
+    "lightBackground": "#E9EAEB",
+    "lightBuildings": "#DFE2E5",
+    "darkBackground": "#161B19",
+    "userDot": "#C8F000",
+    "route": "#C8F000",
+    "routeOutline": "#0F1110"
+  },
+  "iconSprite": {
+    "package": "@material-symbols/svg-400",
+    "style": "outlined",
+    "sourceGlyphs": 103,
+    "includeFillVariantsOnlyWhenUsed": true
+  },
+  "elevation": {
+    "level0": "none",
+    "level1": "0 4px 20px rgba(18,22,26,.04), 0 1px 4px rgba(18,22,26,.02)",
+    "level2": "0 8px 24px rgba(18,22,26,.08), 0 2px 6px rgba(18,22,26,.04)",
+    "level3": "0 -8px 32px rgba(18,22,26,.08)",
+    "level3Scrim": "rgba(18,22,26,.35)",
+    "level4": "0 12px 36px rgba(0,0,0,.25)",
+    "note": "Exact shadow tokens come from DESIGN.md; individual screen code may specify local variants."
+  }
+}

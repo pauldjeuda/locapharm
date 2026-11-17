@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#c7ef00", "surface-dim": "#d7dae0", "surface-variant": "#e0e3e8", "on-primary-container": "#e8ffd9", "on-surface-variant": "#43483f", "on-secondary-fixed-variant": "#3e4c00", "on-secondary-container": "#576a00", "surface-container-high": "#e5e8ee", "inverse-primary": "#aed09d", "surface-bright": "#f7f9ff", "on-surface": "#181c20", "inverse-on-surface": "#eef1f6", "tertiary": "#45603b", "on-primary": "#ffffff", "error-container": "#ffdad6", "tertiary-container": "#5d7952", "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-fixed": "#062102", "on-secondary": "#ffffff", "secondary-fixed-dim": "#b1d500", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#314e27", "on-tertiary-fixed-variant": "#334d2b", "on-tertiary-container": "#e6ffd8", "tertiary-fixed": "#ccecbd", "primary-container": "#5b7a4e", "primary": "#436137", "secondary-fixed": "#caf208", "surface-container-highest": "#e0e3e8", "background": "#f7f9ff", "outline": "#73796e", "tertiary-fixed-dim": "#b0cfa2", "surface-container": "#ebeef4", "surface-container-low": "#f1f4f9", "on-error-container": "#93000a", "surface": "#f7f9ff", "on-tertiary-fixed": "#082104", "on-background": "#181c20", "inverse-surface": "#2d3135", "surface-tint": "#48663c", "outline-variant": "#c3c8bc", "secondary": "#536500", "on-secondary-fixed": "#171e00", "primary-fixed": "#c9edb7", "primary-fixed-dim": "#aed09d" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.25rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "data-metric": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Syne"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Syne"], "headline-md": ["Syne"], "headline-sm": ["Syne"], "headline-lg-mobile": ["Syne"], "body-md": ["Inter"], "headline-xl": ["Syne"] }, fontSize: { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "700" }], "data-metric": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>body{min-height:max(884px,100dvh);}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen relative antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Locapharm Logo Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCptTHDOoc-zdUEH4K4IpXENKvMY48spvC_qbXAHyKttpkSLsnL11kg417dqxUivJHJNKrEakLNVGAqjKvVeYgklT26uKtkNXdTbP6k0t80dkxr1j0P8rK2BPY0sji71c9TkW0w91b9dWSIkBUe67GlhDw8003J6ufTrzNmSXa7_jP0-Ya74H0WzH6mLwgA_awOxnCdRTHbIYWc2VmDCu8yryQQBfzk7wnCy-04vXyc"/><span class="font-headline-md text-headline-md text-on-surface tracking-tight">Locapharm</span></div><h1 class="sr-only">Carte</h1><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-on-surface-variant hidden sm:inline">Cameroun</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-surface"><div class="flex flex-col w-full relative select-none">
+<!-- Map Simulation Canvas Viewport -->
+<div class="relative w-full h-[390px] overflow-hidden bg-inverse-surface shadow-inner">
+<!-- SVG Vector Map Simulation with 3D Charcoal Iso Blocks, High-Contrast Neon Wayfinding -->
+<svg class="absolute inset-0 w-full h-full object-cover" fill="none" viewbox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="50%" cy="50%" id="userPulse" r="50%">
+<stop offset="0%" stop-color="#caf208" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#caf208" stop-opacity="0"></stop>
+</radialgradient>
+<lineargradient id="routeGlow" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#caf208"></stop>
+<stop offset="100%" stop-color="#aed09d"></stop>
+</lineargradient>
+<filter height="140%" id="neonBlur" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+<filter height="125%" id="cardShadow" width="120%" x="-10%" y="-10%">
+<fedropshadow dx="0" dy="6" flood-color="#000000" flood-opacity="0.6" stddeviation="8"></fedropshadow>
+</filter>
+</defs>
+<!-- Dark Ground Plane -->
+<rect fill="#131715" height="400" width="420"></rect>
+<!-- Primary Arteries & Avenues (Douala / Akwa Urban Fabric) -->
+<path d="M-20 70 L440 120" stroke="#1f2522" stroke-linecap="round" stroke-width="26"></path>
+<path d="M120 -30 L160 420" stroke="#1f2522" stroke-linecap="round" stroke-width="22"></path>
+<path d="M30 380 L390 40" stroke="#181e1b" stroke-linecap="round" stroke-width="18"></path>
+<path d="M-10 230 C 140 220, 260 270, 430 250" fill="none" stroke="#1f2522" stroke-width="24"></path>
+<!-- Secondary Streets -->
+<path d="M260 -10 L280 410" stroke="#161b19" stroke-width="10"></path>
+<path d="M-10 160 L430 180" stroke="#161b19" stroke-width="9"></path>
+<path d="M60 280 L240 370" stroke="#161b19" stroke-width="8"></path>
+<!-- 3D Extruded Buildings (Monochrome Charcoal Blocks) -->
+<!-- Block Group 1 -->
+<path d="M40 98 L85 104 L85 138 L40 132 Z" fill="#1d2220"></path>
+<path d="M40 98 L85 104 L75 92 L30 86 Z" fill="#29302c"></path>
+<path d="M85 104 L85 138 L95 126 L95 92 Z" fill="#232a26"></path>
+<!-- Block Group 2 -->
+<path d="M180 60 L240 68 L240 108 L180 100 Z" fill="#1b201e"></path>
+<path d="M180 60 L240 68 L232 54 L172 46 Z" fill="#2a322e"></path>
+<path d="M240 68 L240 108 L248 94 L248 54 Z" fill="#202724"></path>
+<!-- Block Group 3 (Akwa Commercial Center) -->
+<path d="M180 136 L230 142 L230 185 L180 179 Z" fill="#1f2522"></path>
+<path d="M180 136 L230 142 L220 128 L170 122 Z" fill="#2d3531"></path>
+<path d="M285 110 L345 118 L345 160 L285 152 Z" fill="#1c211f"></path>
+<path d="M285 110 L345 118 L337 100 L277 92 Z" fill="#29302c"></path>
+<!-- Block Group 4 (South District) -->
+<path d="M50 260 L110 266 L110 320 L50 314 Z" fill="#1d2220"></path>
+<path d="M190 270 L245 276 L245 330 L190 324 Z" fill="#1e2421"></path>
+<path d="M290 210 L360 218 L360 280 L290 272 Z" fill="#1f2522"></path>
+<!-- Neon Lime Active Navigation Route Line -->
+<path d="M138 238 L142 165 L274 178 L278 126" opacity="0.6" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"></path>
+<path d="M138 238 L142 165 L274 178 L278 126" filter="url(#neonBlur)" stroke="url(#routeGlow)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></path>
+<path d="M138 238 L142 165 L274 178 L278 126" stroke="#caf208" stroke-dasharray="8 3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- User Presence: Directional Cone & Radar Core -->
+<path d="M138 238 L105 185 A50 50 0 0 1 172 185 Z" fill="url(#userPulse)"></path>
+<circle cx="138" cy="238" fill="#caf208" fill-opacity="0.2" r="16"></circle>
+<circle cx="138" cy="238" fill="#181c20" r="8"></circle>
+<circle cx="138" cy="238" fill="#caf208" r="6"></circle>
+<circle cx="138" cy="238" fill="#ffffff" r="2.5"></circle>
+<!-- Standard Pharmacy Pin 1 (Deido) -->
+<g transform="translate(68, 120)">
+<ellipse cx="14" cy="28" fill="#000000" opacity="0.4" rx="8" ry="3.5"></ellipse>
+<path d="M14 0 C6.3 0 0 6.3 0 14 C0 23.5 14 32 14 32 C14 32 28 23.5 28 14 C28 6.3 21.7 0 14 0 Z" fill="#181c20"></path>
+<path d="M14 8 V20 M8 14 H20" stroke="#caf208" stroke-linecap="round" stroke-width="2.5"></path>
+</g>
+<!-- Guard Duty Halo Pin 2 (Bonanjo - On-Duty) -->
+<g transform="translate(196, 76)">
+<circle cx="15" cy="15" fill="#436137" fill-opacity="0.35" r="22"></circle>
+<circle cx="15" cy="15" fill="#436137" fill-opacity="0.5" r="17"></circle>
+<path d="M15 2 C8.4 2 3 7.4 3 14 C3 23 15 31 15 31 C15 31 27 23 27 14 C27 7.4 21.6 2 15 2 Z" fill="#062102"></path>
+<path d="M15 8 V20 M9 14 H21" stroke="#ffffff" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="23" cy="6" fill="#caf208" r="4.5"></circle>
+</g>
+<!-- Secondary Standard Pin 3 (Bali) -->
+<g transform="translate(320, 240)">
+<ellipse cx="12" cy="24" fill="#000000" opacity="0.4" rx="7" ry="3"></ellipse>
+<path d="M12 0 C5.4 0 0 5.4 0 12 C0 20 12 28 12 28 C12 28 24 20 24 12 C24 5.4 18.6 0 12 0 Z" fill="#181c20"></path>
+<path d="M12 7 V17 M7 12 H17" stroke="#caf208" stroke-linecap="round" stroke-width="2"></path>
+</g>
+<!-- Active Selected Hero Pin (Pharmacie du Centre - Glowing Lime) -->
+<g filter="url(#neonBlur)" transform="translate(262, 94)">
+<circle cx="18" cy="18" fill="#caf208" fill-opacity="0.3" r="24"></circle>
+</g>
+<g transform="translate(262, 94)">
+<ellipse cx="18" cy="38" fill="#000000" opacity="0.6" rx="10" ry="4"></ellipse>
+<path d="M18 0 C8.1 0 0 8.1 0 18 C0 30 18 42 18 42 C18 42 36 30 36 18 C36 8.1 27.9 0 18 0 Z" fill="#caf208"></path>
+<circle cx="18" cy="17" fill="#181c20" r="13"></circle>
+<path d="M18 10 V24 M11 17 H25" stroke="#caf208" stroke-linecap="round" stroke-width="3"></path>
+</g>
+</svg>
+<!-- Top Floating Bar: Pill Search & Round Tactile Controls -->
+<div class="absolute top-3 inset-x-0 px-margin flex items-center gap-space-sm z-20">
+<!-- Search Input Dark Pill -->
+<div class="flex-1 h-12 bg-inverse-surface/95 backdrop-blur-md rounded-full px-4 flex items-center gap-space-sm shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px] shrink-0">search</span>
+<input class="bg-transparent font-body-md text-body-md text-surface-container-lowest placeholder:text-outline focus:outline-none w-full min-w-0" placeholder="Pharmacie, Akwa, Bonanjo..." type="text" value="Pharmacies ouvertes"/>
+<button class="w-6 h-6 rounded-full bg-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-surface text-[14px]">close</span>
+</button>
+</div>
+<!-- Quick Action: Filter Button with Notification Badge -->
+<button aria-label="Filtres" class="relative w-12 h-12 rounded-full bg-inverse-surface/95 backdrop-blur-md flex items-center justify-center text-surface-container-lowest shadow-[0_4px_20px_rgba(0,0,0,0.5)] active:scale-95 transition-transform shrink-0">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm flex items-center justify-center">2</span>
+</button>
+<!-- GPS Re-center Floating Round Button -->
+<button aria-label="Centrer ma position" class="w-12 h-12 rounded-full bg-inverse-surface/95 backdrop-blur-md flex items-center justify-center text-secondary-fixed shadow-[0_4px_20px_rgba(0,0,0,0.5)] active:scale-95 transition-transform shrink-0">
+<span class="material-symbols-outlined text-[20px]">my_location</span>
+</button>
+</div>
+<!-- Filter Chips Row (Floating horizontally over map) -->
+<div class="absolute top-[72px] inset-x-0 px-margin flex items-center gap-space-xs overflow-x-auto z-20 pb-1">
+<button class="h-8 px-3.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md flex items-center gap-1.5 shrink-0 shadow-md">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-fixed"></span>
+        Toutes (14)
+      </button>
+<button class="h-8 px-3.5 rounded-full bg-inverse-surface/90 text-surface-container-lowest backdrop-blur-md font-label-md text-label-md flex items-center gap-1.5 shrink-0 shadow-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+        De garde (5)
+      </button>
+<button class="h-8 px-3.5 rounded-full bg-inverse-surface/90 text-surface-container-lowest backdrop-blur-md font-label-md text-label-md flex items-center gap-1.5 shrink-0 shadow-md">
+        Ouvertes
+      </button>
+<button class="h-8 px-3.5 rounded-full bg-inverse-surface/90 text-surface-container-lowest backdrop-blur-md font-label-md text-label-md flex items-center gap-1.5 shrink-0 shadow-md">
+        24h/24
+      </button>
+</div>
+<!-- Left Floating Vertical Map Tools (Dark Pill Styling) -->
+<div class="absolute left-margin top-32 z-20 flex flex-col gap-1.5 bg-inverse-surface/95 backdrop-blur-md p-1 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
+<button aria-label="Zoom avant" class="w-9 h-9 rounded-full flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<div class="w-5 h-px bg-on-surface-variant/40 mx-auto"></div>
+<button aria-label="Zoom arrière" class="w-9 h-9 rounded-full flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<div class="w-5 h-px bg-on-surface-variant/40 mx-auto"></div>
+<button aria-label="Vue satellite 3D" class="w-9 h-9 rounded-full flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</button>
+</div>
+<!-- Floating Live Radar Status Badge (Bottom right of map area) -->
+<div class="absolute right-margin bottom-10 z-20 bg-inverse-surface/95 backdrop-blur-md rounded-full pl-2 pr-3 py-1 flex items-center gap-2 shadow-lg">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary-fixed"></span>
+</span>
+<span class="font-label-sm text-label-sm text-surface-container-lowest tracking-wider uppercase">GPS Akwa • Précis</span>
+</div>
+</div>
+<!-- Bottom Sheet Container (Dark Slate #1A1E1C, Rounded 32px top) -->
+<div class="relative w-full -mt-6 z-30 bg-inverse-surface rounded-t-[32px] pt-3 pb-8 px-margin shadow-[0_-12px_32px_rgba(0,0,0,0.6)] flex flex-col">
+<!-- Tactile Drag Handle -->
+<div class="w-12 h-1.5 bg-outline/50 rounded-full mx-auto mb-4 shrink-0"></div>
+<!-- Header Row & Quick Counters -->
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-surface-container-lowest">Les plus proches</h2>
+<span class="font-label-md text-label-md text-secondary-fixed font-semibold">(14)</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-surface-dim uppercase tracking-wider">Douala 1er</span>
+<span class="material-symbols-outlined text-[16px] text-surface-dim">expand_more</span>
+</div>
+</div>
+<!-- Urgent Advisory Banner (Dark Sage Container) -->
+<div class="w-full bg-primary-container/30 rounded-DEFAULT p-3 mb-4 flex items-start gap-space-sm">
+<span class="text-[16px] shrink-0">⚠️</span>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+<strong class="font-semibold text-secondary-fixed">Urgence :</strong> Appelez toujours l'officine pour confirmer la disponibilité des produits avant de vous déplacer en nocturne.
+      </p>
+</div>
+<!-- Pharmacy List Rows -->
+<div class="flex flex-col gap-space-sm">
+<!-- Pharmacy 1: Selected & Nearest (Featured Active Lime Bar) -->
+<div class="relative bg-surface-variant/10 rounded-DEFAULT p-3.5 flex items-center justify-between overflow-hidden shadow-sm">
+<!-- Vertical Accent Indicator Bar -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary-fixed"></div>
+<div class="flex flex-col min-w-0 pr-3 pl-2">
+<div class="flex items-center gap-2 mb-1 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest truncate">Pharmacie du Centre</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm tracking-wider uppercase shrink-0">DE GARDE</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-dim truncate mb-1">Boulevard de la Liberté, face MTN Akwa</p>
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric text-data-metric text-secondary-fixed tabular-nums">420 m</span>
+<span class="text-surface-dim font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-surface-dim flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">directions_walk</span> 5 min
+            </span>
+</div>
+</div>
+<!-- Action Buttons Pair -->
+<div class="flex items-center gap-space-xs shrink-0">
+<a aria-label="Appeler la pharmacie" class="w-11 h-11 rounded-full bg-inverse-surface/80 flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors" href="tel:+237233420000">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire rapide" class="w-11 h-11 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shadow-[0_4px_12px_rgba(202,242,8,0.3)] active:scale-95 transition-transform">
+<span class="font-headline-sm text-headline-sm font-bold text-[18px]">↗</span>
+</button>
+</div>
+</div>
+<!-- Pharmacy 2: De Garde (Bonanjo) -->
+<div class="bg-surface-variant/5 rounded-DEFAULT p-3.5 flex items-center justify-between shadow-sm">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest truncate">Pharmacie des Palmiers</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm tracking-wider uppercase shrink-0">DE GARDE</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-dim truncate mb-1">Rue Ivy, Quartier Administratif Bonanjo</p>
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric text-data-metric text-surface-container-lowest tabular-nums">850 m</span>
+<span class="text-surface-dim font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-surface-dim flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 3 min
+            </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<a aria-label="Appeler" class="w-11 h-11 rounded-full bg-inverse-surface/80 flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors" href="tel:+237233421122">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire" class="w-11 h-11 rounded-full bg-surface-variant/20 flex items-center justify-center text-surface-container-lowest active:scale-95 transition-transform">
+<span class="font-headline-sm text-headline-sm font-bold text-[18px]">↗</span>
+</button>
+</div>
+</div>
+<!-- Pharmacy 3: Ouverte (Akwa Nord) -->
+<div class="bg-surface-variant/5 rounded-DEFAULT p-3.5 flex items-center justify-between shadow-sm">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest truncate">Pharmacie du Rail</span>
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface text-secondary-fixed font-label-sm text-label-sm tracking-wider uppercase shrink-0">OUVERTE</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-dim truncate mb-1">Carrefour Idéal, Akwa</p>
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric text-data-metric text-surface-container-lowest tabular-nums">1.2 km</span>
+<span class="text-surface-dim font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-surface-dim flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Ferme à 22h
+            </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<a aria-label="Appeler" class="w-11 h-11 rounded-full bg-inverse-surface/80 flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors" href="tel:+237233423344">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire" class="w-11 h-11 rounded-full bg-surface-variant/20 flex items-center justify-center text-surface-container-lowest active:scale-95 transition-transform">
+<span class="font-headline-sm text-headline-sm font-bold text-[18px]">↗</span>
+</button>
+</div>
+</div>
+<!-- Pharmacy 4: Ouverte (Deido Grand Moulin) -->
+<div class="bg-surface-variant/5 rounded-DEFAULT p-3.5 flex items-center justify-between shadow-sm">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest truncate">Pharmacie Nouvelle de Deïdo</span>
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface text-secondary-fixed font-label-sm text-label-sm tracking-wider uppercase shrink-0">OUVERTE</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-dim truncate mb-1">Rue des Écoles, Rond-point Deïdo</p>
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric text-data-metric text-surface-container-lowest tabular-nums">1.7 km</span>
+<span class="text-surface-dim font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-surface-dim flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 24h/24
+            </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<a aria-label="Appeler" class="w-11 h-11 rounded-full bg-inverse-surface/80 flex items-center justify-center text-surface-container-lowest hover:text-secondary-fixed transition-colors" href="tel:+237233425566">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button aria-label="Itinéraire" class="w-11 h-11 rounded-full bg-surface-variant/20 flex items-center justify-center text-surface-container-lowest active:scale-95 transition-transform">
+<span class="font-headline-sm text-headline-sm font-bold text-[18px]">↗</span>
+</button>
+</div>
+</div>
+<!-- Pharmacy 5: Fermée (Muted Subtle Status) -->
+<div class="bg-surface-variant/5 rounded-DEFAULT p-3.5 flex items-center justify-between opacity-75 shadow-sm">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-surface-dim truncate">Pharmacie du Wouri</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-variant/30 text-surface-dim font-label-sm text-label-sm tracking-wider uppercase shrink-0">FERMÉE</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate mb-1">Ancien Pont, Axe Bonabéri</p>
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric text-data-metric text-surface-dim tabular-nums">2.3 km</span>
+<span class="text-outline font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-outline">Ouvre demain 08:00</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button aria-label="Pharmacie fermée" class="w-11 h-11 rounded-full bg-surface-variant/10 flex items-center justify-center text-outline cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[20px]">call_end</span>
+</button>
+<button aria-label="Localiser quand même" class="w-11 h-11 rounded-full bg-surface-variant/10 flex items-center justify-center text-outline">
+<span class="font-headline-sm text-headline-sm font-bold text-[18px]">↗</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Emergency Contact Footer Tile -->
+<div class="mt-4 p-3.5 rounded-DEFAULT bg-inverse-surface flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[20px]">emergency</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-surface-container-lowest block leading-tight">SAMU Cameroun</span>
+<span class="font-body-sm text-body-sm text-surface-dim">Urgences médicales nationales</span>
+</div>
+</div>
+<a class="px-4 py-2 rounded-full bg-error text-on-error font-label-md text-label-md flex items-center gap-1 active:scale-95 transition-transform" href="tel:119">
+<span class="material-symbols-outlined text-[16px]">phone_in_talk</span>
+<span>119</span>
+</a>
+</div>
+</div>
+</div></main><div class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none flex justify-center"><nav class="pointer-events-auto mb-4 mx-space-md bg-inverse-surface rounded-full p-1.5 flex items-center gap-1 shadow-[0_12px_36px_rgba(0,0,0,0.25)]" data-active-classes="bg-surface-container-lowest text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.18)]"><a aria-current="page" class="flex items-center gap-space-xs px-3.5 py-2 rounded-full transition-all min-h-[44px] bg-surface-container-lowest text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.18)]" data-path="carte" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-md text-label-md">Carte</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="gardes" href="#"><span class="material-symbols-outlined text-[20px]">emergency</span><span class="font-label-md text-label-md">Gardes</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="favoris" href="#"><span class="material-symbols-outlined text-[20px]">bookmark</span><span class="font-label-md text-label-md">Favoris</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-surface-bright/70 hover:text-surface-bright transition-all min-h-[44px]" data-path="reglages" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-md text-label-md">Réglages</span></a></nav></div></body></html>

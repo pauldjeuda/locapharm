@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#c7ef00", "surface-dim": "#d7dae0", "surface-variant": "#e0e3e8", "on-primary-container": "#e8ffd9", "on-surface-variant": "#43483f", "on-secondary-fixed-variant": "#3e4c00", "on-secondary-container": "#576a00", "surface-container-high": "#e5e8ee", "inverse-primary": "#aed09d", "surface-bright": "#f7f9ff", "on-surface": "#181c20", "inverse-on-surface": "#eef1f6", "tertiary": "#45603b", "on-primary": "#ffffff", "error-container": "#ffdad6", "tertiary-container": "#5d7952", "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-fixed": "#062102", "on-secondary": "#ffffff", "secondary-fixed-dim": "#b1d500", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#314e27", "on-tertiary-fixed-variant": "#334d2b", "on-tertiary-container": "#e6ffd8", "tertiary-fixed": "#ccecbd", "primary-container": "#5b7a4e", "primary": "#436137", "secondary-fixed": "#caf208", "surface-container-highest": "#e0e3e8", "background": "#f7f9ff", "outline": "#73796e", "tertiary-fixed-dim": "#b0cfa2", "surface-container": "#ebeef4", "surface-container-low": "#f1f4f9", "on-error-container": "#93000a", "surface": "#f7f9ff", "on-tertiary-fixed": "#082104", "on-background": "#181c20", "inverse-surface": "#2d3135", "surface-tint": "#48663c", "outline-variant": "#c3c8bc", "secondary": "#536500", "on-secondary-fixed": "#171e00", "primary-fixed": "#c9edb7", "primary-fixed-dim": "#aed09d" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.25rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "data-metric": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Syne"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Syne"], "headline-md": ["Syne"], "headline-sm": ["Syne"], "headline-lg-mobile": ["Syne"], "body-md": ["Inter"], "headline-xl": ["Syne"] }, fontSize: { "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "700" }], "data-metric": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "700" }], "headline-lg-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen relative antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Locapharm Logo Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCptTHDOoc-zdUEH4K4IpXENKvMY48spvC_qbXAHyKttpkSLsnL11kg417dqxUivJHJNKrEakLNVGAqjKvVeYgklT26uKtkNXdTbP6k0t80dkxr1j0P8rK2BPY0sji71c9TkW0w91b9dWSIkBUe67GlhDw8003J6ufTrzNmSXa7_jP0-Ya74H0WzH6mLwgA_awOxnCdRTHbIYWc2VmDCu8yryQQBfzk7wnCy-04vXyc"/><span class="font-headline-md text-headline-md text-on-surface tracking-tight">Locapharm</span></div><h1 class="sr-only">Carte</h1><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-on-surface-variant hidden sm:inline">Cameroun</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 bg-surface"><div class="flex flex-col w-full relative">
+<!-- Dimmed Background Map Context (Top ~22%) -->
+<div class="relative w-full h-44 overflow-hidden -mb-6 select-none cursor-pointer" id="backdropArea">
+<!-- Map Viewport -->
+<div class="w-full h-full bg-cover bg-center brightness-[0.65] contrast-[1.1] scale-105" data-location="Akwa, Douala, Cameroon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAo2_7PKerl_GmNkuPulfkY3amRnripm1xXpyGLOfQ-4zmO88xABCvHBGuCX2JJK3u5jd4a3wJ_rq6lJjwt2HPQlDVDai4JM5OY5Eu6Anu3T6T0VQGK6ELy2Zud33djMIMQ2UrPjeah7ZHC-KyFPOYb8XqC37x8SK2x_Qq38x9mCpbdWFO6bsQ6gQUf92RbPHcDqhASGvl05K2Zas65ml7N5DQ0zXHKHMII8-Jp_8HS')"></div>
+<!-- Ambient Dark Scrim with Botanical Tint -->
+<div class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-[2px] transition-opacity"></div>
+<!-- Floating Map Markers Visible Under Veil -->
+<div class="absolute top-6 left-1/4 -translate-x-1/2 flex items-center gap-1.5 bg-inverse-surface/90 text-surface-bright px-2.5 py-1 rounded-full shadow-lg">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm uppercase">Akwa Nord</span>
+</div>
+<div class="absolute top-10 right-8 flex items-center gap-1.5 bg-primary px-3 py-1 rounded-full shadow-lg text-on-primary">
+<span class="material-symbols-outlined text-[14px]">local_pharmacy</span>
+<span class="font-label-sm text-label-sm tracking-wider">DE GARDE</span>
+</div>
+<!-- Tap backdrop indicator -->
+<div class="absolute top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-inverse-surface/60 backdrop-blur-md text-surface-bright flex items-center gap-1 shadow-sm opacity-80">
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+<span class="font-label-sm text-label-sm">Fermer la vue</span>
+</div>
+</div>
+<!-- Filters Bottom Sheet Container -->
+<section class="relative z-10 w-full bg-surface-container-lowest rounded-t-[32px] shadow-[0_-8px_32px_rgba(18,22,26,0.08)] px-margin pt-3 pb-8 flex flex-col">
+<!-- Sheet Drag Handle -->
+<div class="w-12 h-1.5 bg-surface-variant rounded-full mx-auto my-2 shrink-0"></div>
+<!-- Sheet Header -->
+<div class="flex items-center justify-between mt-2 mb-6">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Affiner la recherche</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Filtres</h2>
+</div>
+<!-- Close round control (44px Android ergonomic thumb target) -->
+<button aria-label="Fermer les filtres" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface active:scale-95 transition-transform shadow-[0_2px_8px_rgba(0,0,0,0.04)]" id="closeSheetBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Form Controls Stack -->
+<div class="flex flex-col gap-space-lg">
+<!-- SECTION 1: Rayon de recherche -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">near_me</span>
+<label class="font-headline-sm text-headline-sm text-on-surface" for="radiusRange">Rayon maximal</label>
+</div>
+<!-- Numeric badge -->
+<div class="bg-surface-container-high px-3.5 py-1 rounded-full flex items-baseline gap-0.5">
+<span class="font-data-metric text-data-metric text-on-surface" id="radiusValue">5</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase ml-0.5">km</span>
+</div>
+</div>
+<!-- Custom Interactive Range Slider -->
+<div class="relative w-full py-4 flex flex-col justify-center">
+<!-- Background Inactive Track -->
+<div class="w-full h-2.5 bg-surface-container rounded-full relative overflow-hidden">
+<!-- Active Lime Progress Indicator -->
+<div class="absolute left-0 top-0 bottom-0 bg-secondary-container rounded-full" id="sliderFill" style="width: 21.05%;"></div>
+</div>
+<!-- Native Slider (Invisible over track for accessible mobile thumb sliding) -->
+<input aria-valuemax="20" aria-valuemin="1" aria-valuenow="5" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" id="radiusRange" max="20" min="1" step="1" type="range" value="5"/>
+<!-- Dynamic Thumb Knob -->
+<div class="absolute top-1/2 -translate-y-1/2 pointer-events-none z-10 w-7 h-7 rounded-full bg-inverse-surface shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center transition-transform" id="sliderThumb" style="left: calc(21.05% - 14px);">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary-container"></div>
+</div>
+</div>
+<!-- Scale Labels -->
+<div class="flex justify-between items-center px-1 text-on-surface-variant font-label-md text-label-md">
+<span>1 km</span>
+<span class="text-on-surface-variant/70">10 km</span>
+<span>20 km</span>
+</div>
+</div>
+<!-- SECTION 2: Statut de l'officine -->
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant mb-1">
+          Statut de l'officine
+        </h3>
+<div aria-label="Statut" class="flex flex-wrap gap-2" role="group">
+<!-- Active Garde Chip -->
+<button class="filter-chip active flex items-center gap-1.5 h-10 px-4 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-sm transition-all" data-filter="garde" type="button">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span>De garde</span>
+</button>
+<!-- Ouvertes Chip -->
+<button class="filter-chip flex items-center gap-1.5 h-10 px-4 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg transition-all" data-filter="open" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span>Ouvertes</span>
+</button>
+<!-- 24h / 24 Chip -->
+<button class="filter-chip flex items-center gap-1.5 h-10 px-4 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg transition-all" data-filter="24h" type="button">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>24h / 24</span>
+</button>
+</div>
+</div>
+<!-- SECTION 3: Trier par -->
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant mb-1">
+          Trier par
+        </h3>
+<div aria-label="Ordre d'affichage" class="flex gap-2" role="radiogroup">
+<!-- Distance (Active) -->
+<button class="sort-chip active flex-1 h-10 px-4 rounded-full bg-inverse-surface text-surface-bright font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-sm transition-all" data-sort="distance" type="button">
+<span class="material-symbols-outlined text-[16px]">navigation</span>
+<span>Distance</span>
+</button>
+<!-- Nom (Inactive) -->
+<button class="sort-chip flex-1 h-10 px-4 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all" data-sort="name" type="button">
+<span class="material-symbols-outlined text-[16px]">sort_by_alpha</span>
+<span>Nom (A-Z)</span>
+</button>
+</div>
+</div>
+<!-- SECTION 4: Options complémentaires (Toggle Card) -->
+<div class="bg-surface-container-low rounded-2xl p-4 flex items-center justify-between gap-3 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+<div class="flex flex-col pr-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Avec téléphone uniquement</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Masquer les pharmacies sans numéro direct vérifié</span>
+</div>
+<!-- Custom Tactile Pill Switch -->
+<button aria-checked="true" aria-label="Filtrer pharmacies avec téléphone uniquement" class="relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out bg-inverse-surface p-0.5" id="phoneToggle" role="switch" type="button">
+<!-- Knob -->
+<span class="pointer-events-none inline-block h-6 w-6 transform rounded-full bg-secondary-container shadow-md transition duration-200 ease-in-out translate-x-5 flex items-center justify-center" id="toggleKnob">
+<span class="material-symbols-outlined text-on-secondary-container text-[14px]">call</span>
+</span>
+</button>
+</div>
+</div>
+<!-- STICKY BOTTOM ACTION AREA -->
+<div class="mt-8 pt-4 flex flex-col gap-3">
+<!-- Primary Pill Submission Button -->
+<button class="w-full h-14 bg-inverse-surface text-surface-bright rounded-full px-5 flex items-center justify-between shadow-[0_8px_24px_rgba(18,22,26,0.18)] active:scale-[0.98] transition-all" id="applyFilterBtn" type="button">
+<!-- Leading Icon Badge -->
+<div class="w-8 h-8 rounded-full bg-surface-bright/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">check</span>
+</div>
+<!-- Main Dynamic Callout -->
+<span class="font-label-lg text-label-lg text-surface-bright font-bold tracking-wide" id="resultsCountLabel">
+          Afficher 24 pharmacies
+        </span>
+<!-- Trailing Diagonal Arrow -->
+<div class="w-8 h-8 rounded-full bg-surface-bright/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-surface-bright text-[18px]">north_east</span>
+</div>
+</button>
+<!-- Reset Action -->
+<button class="mx-auto py-2 px-4 text-on-surface-variant font-label-md text-label-md hover:text-on-surface underline underline-offset-4 transition-colors" id="resetFiltersBtn" type="button">
+        Réinitialiser tous les filtres
+      </button>
+</div>
+</section>
+</div>
+<script>
+  (function () {
+    const slider = document.getElementById('radiusRange');
+    const radiusValue = document.getElementById('radiusValue');
+    const sliderFill = document.getElementById('sliderFill');
+    const sliderThumb = document.getElementById('sliderThumb');
+    const resultsCountLabel = document.getElementById('resultsCountLabel');
+    const phoneToggle = document.getElementById('phoneToggle');
+    const toggleKnob = document.getElementById('toggleKnob');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const sortChips = document.querySelectorAll('.sort-chip');
+    const resetBtn = document.getElementById('resetFiltersBtn');
+    const closeBtn = document.getElementById('closeSheetBtn');
+    const backdropArea = document.getElementById('backdropArea');
+
+    // Dynamic slider math
+    function updateSlider(val) {
+      const min = parseFloat(slider.min) || 1;
+      const max = parseFloat(slider.max) || 20;
+      const percent = ((val - min) / (max - min)) * 100;
+      
+      radiusValue.textContent = val;
+      sliderFill.style.width = percent + '%';
+      sliderThumb.style.left = `calc(${percent}% - 14px)`;
+
+      // Recalculate dynamic mock pharmacy count based on radius and selected states
+      updatePharmacyCount();
+    }
+
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        updateSlider(e.target.value);
+      });
+    }
+
+    // Toggle switch logic
+    let isPhoneOnly = true;
+    if (phoneToggle) {
+      phoneToggle.addEventListener('click', () => {
+        isPhoneOnly = !isPhoneOnly;
+        phoneToggle.setAttribute('aria-checked', isPhoneOnly.toString());
+        if (isPhoneOnly) {
+          phoneToggle.classList.remove('bg-surface-variant');
+          phoneToggle.classList.add('bg-inverse-surface');
+          toggleKnob.classList.remove('translate-x-0', 'bg-surface-bright');
+          toggleKnob.classList.add('translate-x-5', 'bg-secondary-container');
+        } else {
+          phoneToggle.classList.remove('bg-inverse-surface');
+          phoneToggle.classList.add('bg-surface-variant');
+          toggleKnob.classList.remove('translate-x-5', 'bg-secondary-container');
+          toggleKnob.classList.add('translate-x-0', 'bg-surface-bright');
+        }
+        updatePharmacyCount();
+      });
+    }
+
+    // Filter Chips toggling
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+        if (chip.classList.contains('active')) {
+          chip.classList.remove('bg-surface-container', 'text-on-surface');
+          chip.classList.add('bg-primary', 'text-on-primary');
+        } else {
+          chip.classList.remove('bg-primary', 'text-on-primary');
+          chip.classList.add('bg-surface-container', 'text-on-surface');
+        }
+        updatePharmacyCount();
+      });
+    });
+
+    // Sort Chips toggling (Radio group behavior)
+    sortChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        sortChips.forEach(c => {
+          c.classList.remove('active', 'bg-inverse-surface', 'text-surface-bright');
+          c.classList.add('bg-surface-container', 'text-on-surface');
+        });
+        chip.classList.add('active', 'bg-inverse-surface', 'text-surface-bright');
+        chip.classList.remove('bg-surface-container', 'text-on-surface');
+      });
+    });
+
+    // Dynamic result estimation indicator
+    function updatePharmacyCount() {
+      const r = parseInt(slider.value, 10);
+      const activeFiltersCount = document.querySelectorAll('.filter-chip.active').length;
+      let baseCount = Math.round(r * 4.8);
+      if (!isPhoneOnly) baseCount += 5;
+      if (activeFiltersCount === 0) baseCount = Math.max(1, Math.round(baseCount * 1.4));
+      
+      const clamped = Math.max(3, Math.min(84, baseCount));
+      resultsCountLabel.textContent = `Afficher ${clamped} pharmacies`;
+    }
+
+    // Reset button action
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        slider.value = 5;
+        updateSlider(5);
+        
+        // Reset chips: Garde active, others inactive
+        filterChips.forEach((chip) => {
+          if (chip.getAttribute('data-filter') === 'garde') {
+            chip.classList.add('active', 'bg-primary', 'text-on-primary');
+            chip.classList.remove('bg-surface-container', 'text-on-surface');
+          } else {
+            chip.classList.remove('active', 'bg-primary', 'text-on-primary');
+            chip.classList.add('bg-surface-container', 'text-on-surface');
+          }
+        });
+
+        // Reset Sort to distance
+        sortChips.forEach(c => {
+          if (c.getAttribute('data-sort') === 'distance') {
+            c.classList.add('active', 'bg-inverse-surface', 'text-surface-bright');
+            c.classList.remove('bg-surface-container', 'text-on-surface');
+          } else {
+            c.classList.remove('active', 'bg-inverse-surface', 'text-surface-bright');
+            c.classList.add('bg-surface-container', 'text-on-surface');
+          }
+        });
+
+        // Reset Toggle to ON
+        isPhoneOnly = true;
+        phoneToggle.setAttribute('aria-checked', 'true');
+        phoneToggle.classList.remove('bg-surface-variant');
+        phoneToggle.classList.add('bg-inverse-surface');
+        toggleKnob.classList.remove('translate-x-0', 'bg-surface-bright');
+        toggleKnob.classList.add('translate-x-5', 'bg-secondary-container');
+
+        updatePharmacyCount();
+      });
+    }
+
+    // Close actions
+    function triggerClose() {
+      const mainContainer = document.querySelector('section');
+      if (mainContainer) {
+        mainContainer.style.transform = 'translateY(12px)';
+        mainContainer.style.opacity = '0.7';
+        setTimeout(() => {
+          mainContainer.style.transform = 'translateY(0)';
+          mainContainer.style.opacity = '1';
+        }, 180);
+      }
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', triggerClose);
+    if (backdropArea) backdropArea.addEventListener('click', triggerClose);
+
+    // Initial setup
+    updateSlider(5);
+  })();
+</script></main><div class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none flex justify-center"><nav class="pointer-events-auto mb-4 mx-space-md bg-inverse-surface rounded-full p-1.5 flex items-center gap-1 shadow-[0_12px_36px_rgba(0,0,0,0.25)]" data-active-classes="bg-surface-container-lowest text-on-surface shadow-[0_4px_16px_rgba(0,0,0,0.18)]"><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-on-surface-variant hover:text-surface-bright transition-all min-h-[44px]" data-path="carte" href="#"><span class="material-symbols-outlined text-[20px]">explore</span><span class="font-label-md text-label-md">Carte</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-on-surface-variant hover:text-surface-bright transition-all min-h-[44px]" data-path="gardes" href="#"><span class="material-symbols-outlined text-[20px]">emergency</span><span class="font-label-md text-label-md">Gardes</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-on-surface-variant hover:text-surface-bright transition-all min-h-[44px]" data-path="favoris" href="#"><span class="material-symbols-outlined text-[20px]">bookmark</span><span class="font-label-md text-label-md">Favoris</span></a><a class="flex items-center gap-space-xs px-3.5 py-2 rounded-full text-on-surface-variant hover:text-surface-bright transition-all min-h-[44px]" data-path="reglages" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-md text-label-md">Réglages</span></a></nav></div></body></html>

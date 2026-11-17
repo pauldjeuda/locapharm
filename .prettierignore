@@ -1,0 +1,6 @@
+design/
+**/node_modules/
+app/public/assets/material-symbols.svg
+app/dist/
+worker/.wrangler/
+

@@ -1,0 +1,37 @@
+country:
+  code: CM
+  name:
+    fr: Cameroun
+    en: Cameroon
+  timezone: Africa/Douala
+  regions:
+    - id: adamaoua
+      name: { fr: Adamaoua, en: Adamawa }
+      cities: []
+    - id: centre
+      name: { fr: Centre, en: Centre }
+      cities: []
+    - id: est
+      name: { fr: Est, en: East }
+      cities: []
+    - id: extreme-nord
+      name: { fr: Extrême-Nord, en: Far North }
+      cities: []
+    - id: littoral
+      name: { fr: Littoral, en: Littoral }
+      cities: []
+    - id: nord
+      name: { fr: Nord, en: North }
+      cities: []
+    - id: nord-ouest
+      name: { fr: Nord-Ouest, en: North-West }
+      cities: []
+    - id: ouest
+      name: { fr: Ouest, en: West }
+      cities: []
+    - id: sud
+      name: { fr: Sud, en: South }
+      cities: []
+    - id: sud-ouest
+      name: { fr: Sud-Ouest, en: South-West }
+      cities: []

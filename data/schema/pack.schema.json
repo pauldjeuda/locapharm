@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pauldjeuda.github.io/locapharm/schema/pack.schema.json",
+  "title": "Locapharm regional data pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "region",
+    "generated_at",
+    "pharmacies",
+    "guards",
+    "quality"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "region": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "pharmacies": {
+      "type": "array",
+      "items": { "$ref": "pharmacy.schema.json" }
+    },
+    "guards": { "type": "array", "items": { "$ref": "guard.schema.json" } },
+    "quality": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "pharmacies_count",
+        "phone_coverage",
+        "opening_hours_coverage",
+        "guards_available"
+      ],
+      "properties": {
+        "pharmacies_count": { "type": "integer", "minimum": 0 },
+        "phone_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "opening_hours_coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "guards_available": { "type": "boolean" }
+      }
+    }
+  }
+}
